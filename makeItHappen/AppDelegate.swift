@@ -28,6 +28,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         print("\(quoteText) — \(quoteAuthor)")
     }
+    
+    @objc func openHomepage(_ sender: Any?){
+        if let url = URL(string: "https://www.google.com"), NSWorkspace.shared.open(url) {
+        }
+    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
@@ -36,11 +41,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func constructMenu() {
         let menu = NSMenu()
         
-        menu.addItem(NSMenuItem(title: "Visit our website", action: #selector(AppDelegate.printQuote(_:)), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: "Visit our website", action: #selector(AppDelegate.openHomepage(_:)), keyEquivalent: "I"))
         
         menu.addItem(NSMenuItem(title: "Print Quote", action: #selector(AppDelegate.printQuote(_:)), keyEquivalent: "P"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Preference", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ","))
         menu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
