@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="makeItHappen" customModuleProvider="target"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="OO7-7k-kb7" customClass="MainMenuController" customModule="makeItHappen" customModuleProvider="target">
+            <connections>
+                <outlet property="statusMenu" destination="ofd-Xw-a8y" id="l5X-w0-WSH"/>
+            </connections>
+        </customObject>
+        <menu id="ofd-Xw-a8y">
+            <items>
+                <menuItem title="Open homepage" id="dul-sO-Bpn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openHomepage:" target="OO7-7k-kb7" id="kex-Uw-8gE"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="rd9-Wv-GxQ"/>
+                <menuItem title="About…" id="qLI-Y7-nTG">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="aboutChosen:" target="OO7-7k-kb7" id="9yl-Y9-MTo"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Preferences..." keyEquivalent="," id="jQ6-Hw-OJF">
+                    <connections>
+                        <action selector="prefsChosen:" target="OO7-7k-kb7" id="wpC-8b-ujf"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" keyEquivalent="q" id="nWG-5C-IX4">
+                    <connections>
+                        <action selector="quitChosen:" target="OO7-7k-kb7" id="Hwb-eg-yQL"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="OO7-7k-kb7" id="AYN-ts-qyF"/>
+            </connections>
+            <point key="canvasLocation" x="143" y="168.5"/>
+        </menu>
+    </objects>
+</document>
