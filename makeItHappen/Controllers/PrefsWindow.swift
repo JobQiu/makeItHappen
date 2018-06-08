@@ -22,7 +22,6 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        
         self.window?.center()
         self.window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -33,7 +32,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         
     }
     
-    
+    // this is a test
     
 }
 
