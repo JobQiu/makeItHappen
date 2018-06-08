@@ -183,7 +183,6 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         prefsWindow.showWindow(nil)
     }
     
-    
     @IBAction func openHomepage(_ sender: NSMenuItem) {
         mycommitment.showWindow(nil)
     }

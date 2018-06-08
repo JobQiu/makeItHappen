@@ -14,8 +14,6 @@ protocol PrefsWindowDelegate {
 
 class PrefsWindow: NSWindowController, NSWindowDelegate {
     
-    @IBOutlet weak var monochromeIconCheckbox: NSButton!
-    
     var delegate: PrefsWindowDelegate?
     
     override var windowNibName : NSNib.Name! {
@@ -34,6 +32,8 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         
     }
+    
+    
     
 }
 

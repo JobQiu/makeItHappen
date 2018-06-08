@@ -20,7 +20,10 @@
         </customObject>
         <menu id="ofd-Xw-a8y">
             <items>
-                <menuItem title="Open homepage" id="dul-sO-Bpn">
+                <menuItem title="Visit My Homepage" id="udM-HV-iPw">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Today's Commitment" id="dul-sO-Bpn">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openHomepage:" target="OO7-7k-kb7" id="kex-Uw-8gE"/>
@@ -47,7 +50,7 @@
             <connections>
                 <outlet property="delegate" destination="OO7-7k-kb7" id="AYN-ts-qyF"/>
             </connections>
-            <point key="canvasLocation" x="143" y="168.5"/>
+            <point key="canvasLocation" x="30" y="112"/>
         </menu>
     </objects>
 </document>

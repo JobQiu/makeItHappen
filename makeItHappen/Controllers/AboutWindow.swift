@@ -9,7 +9,9 @@
 import Cocoa
 
 class AboutWindow: NSWindowController {
-
+    override var windowNibName : NSNib.Name! {
+        return NSNib.Name(rawValue: "AboutWindow")
+    }
     override func windowDidLoad() {
         super.windowDidLoad()
 

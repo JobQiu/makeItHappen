@@ -9,7 +9,11 @@
 import Cocoa
 
 class MyCommitment: NSWindowController {
-
+    
+    override var windowNibName : NSNib.Name! {
+        return NSNib.Name(rawValue: "MyCommitment")
+    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
 
