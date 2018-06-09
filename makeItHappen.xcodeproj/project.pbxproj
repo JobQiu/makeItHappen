@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E851171720C999E300873D2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E851171620C999E300873D2F /* AppDelegate.swift */; };
 		E851171B20C999E400873D2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E851171A20C999E400873D2F /* Assets.xcassets */; };
+		E8B6311A20CB3A6F003CADD0 /* PrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */; };
+		E8B6311B20CB3A6F003CADD0 /* PrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */; };
 		E8D58FA620CB148C0049C0CB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D58FA520CB148C0049C0CB /* MainMenu.xib */; };
 		E8D58FA820CB15050049C0CB /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FA720CB15050049C0CB /* MainMenuController.swift */; };
 		E8D58FAB20CB154B0049C0CB /* PrefsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FA920CB154B0049C0CB /* PrefsWindow.swift */; };
@@ -18,14 +20,23 @@
 		E8D58FB320CB158A0049C0CB /* MyCommitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FB120CB158A0049C0CB /* MyCommitment.swift */; };
 		E8D58FB420CB158A0049C0CB /* MyCommitment.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D58FB220CB158A0049C0CB /* MyCommitment.xib */; };
 		E8D58FB620CB1CC90049C0CB /* Commitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FB520CB1CC90049C0CB /* Commitment.swift */; };
+		E8E9A54620CB62BD00859C13 /* Pods_makeItHappen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06106D8ADFDB6E178759236A /* Pods_makeItHappen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06106D8ADFDB6E178759236A /* Pods_makeItHappen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makeItHappen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B033DEC3794E92B9D2C251B /* Pods-makeItHappen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makeItHappen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen.debug.xcconfig"; sourceTree = "<group>"; };
 		E851171320C999E300873D2F /* makeItHappen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makeItHappen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E851171620C999E300873D2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E851171A20C999E400873D2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E851171F20C999E400873D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E851172020C999E400873D2F /* makeItHappen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = makeItHappen.entitlements; sourceTree = "<group>"; };
+		E8B6311520CB2BC4003CADD0 /* MakeItHappen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MakeItHappen-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsViewController.swift; sourceTree = "<group>"; };
+		E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrefsViewController.xib; sourceTree = "<group>"; };
+		E8B6311C20CB5D33003CADD0 /* MASShortcut */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MASShortcut; path = Pods/MASShortcut; sourceTree = "<group>"; };
+		E8B6311E20CB5D77003CADD0 /* Framework */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Framework; path = Pods/MASShortcut/Framework; sourceTree = "<group>"; };
+		E8B6312120CB5F24003CADD0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D58FA520CB148C0049C0CB /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		E8D58FA720CB15050049C0CB /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		E8D58FA920CB154B0049C0CB /* PrefsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsWindow.swift; sourceTree = "<group>"; };
@@ -35,6 +46,7 @@
 		E8D58FB120CB158A0049C0CB /* MyCommitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommitment.swift; sourceTree = "<group>"; };
 		E8D58FB220CB158A0049C0CB /* MyCommitment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCommitment.xib; sourceTree = "<group>"; };
 		E8D58FB520CB1CC90049C0CB /* Commitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commitment.swift; sourceTree = "<group>"; };
+		E8E9B3959CAAEC27E0B2DDA3 /* Pods-makeItHappen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makeItHappen.release.xcconfig"; path = "Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,17 +54,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E9A54620CB62BD00859C13 /* Pods_makeItHappen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B940A9E80D7E86152A2D38E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B033DEC3794E92B9D2C251B /* Pods-makeItHappen.debug.xcconfig */,
+				E8E9B3959CAAEC27E0B2DDA3 /* Pods-makeItHappen.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DC70E44A755C2AA15B4F7E55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8B6311E20CB5D77003CADD0 /* Framework */,
+				E8B6312120CB5F24003CADD0 /* libPods.a */,
+				E8B6311C20CB5D33003CADD0 /* MASShortcut */,
+				06106D8ADFDB6E178759236A /* Pods_makeItHappen.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E851170A20C999E300873D2F = {
 			isa = PBXGroup;
 			children = (
 				E851171520C999E300873D2F /* makeItHappen */,
 				E851171420C999E300873D2F /* Products */,
+				B940A9E80D7E86152A2D38E7 /* Pods */,
+				DC70E44A755C2AA15B4F7E55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +102,7 @@
 		E851171520C999E300873D2F /* makeItHappen */ = {
 			isa = PBXGroup;
 			children = (
+				E8B6311520CB2BC4003CADD0 /* MakeItHappen-Bridging-Header.h */,
 				E851171F20C999E400873D2F /* Info.plist */,
 				E851172020C999E400873D2F /* makeItHappen.entitlements */,
 				E851171620C999E300873D2F /* AppDelegate.swift */,
@@ -81,6 +117,7 @@
 		E8D58FB720CB1CDB0049C0CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */,
 				E8D58FA520CB148C0049C0CB /* MainMenu.xib */,
 				E8D58FB220CB158A0049C0CB /* MyCommitment.xib */,
 				E8D58FAE20CB15660049C0CB /* AboutWindow.xib */,
@@ -104,6 +141,7 @@
 				E8D58FB120CB158A0049C0CB /* MyCommitment.swift */,
 				E8D58FAD20CB15660049C0CB /* AboutWindow.swift */,
 				E8D58FA920CB154B0049C0CB /* PrefsWindow.swift */,
+				E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -123,9 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E851172320C999E400873D2F /* Build configuration list for PBXNativeTarget "makeItHappen" */;
 			buildPhases = (
+				6EF0E9702630603012FCD9E4 /* [CP] Check Pods Manifest.lock */,
 				E851170F20C999E300873D2F /* Sources */,
 				E851171020C999E300873D2F /* Frameworks */,
 				E851171120C999E300873D2F /* Resources */,
+				5E27DE23F4839728BEC63494 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8D58FA620CB148C0049C0CB /* MainMenu.xib in Resources */,
+				E8B6311B20CB3A6F003CADD0 /* PrefsViewController.xib in Resources */,
 				E8D58FAC20CB154B0049C0CB /* PrefsWindow.xib in Resources */,
 				E8D58FB420CB158A0049C0CB /* MyCommitment.xib in Resources */,
 				E851171B20C999E400873D2F /* Assets.xcassets in Resources */,
@@ -183,6 +224,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5E27DE23F4839728BEC63494 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MASShortcut/MASShortcut.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MASShortcut.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EF0E9702630603012FCD9E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-makeItHappen-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E851170F20C999E300873D2F /* Sources */ = {
@@ -195,6 +275,7 @@
 				E8D58FA820CB15050049C0CB /* MainMenuController.swift in Sources */,
 				E8D58FB320CB158A0049C0CB /* MyCommitment.swift in Sources */,
 				E8D58FAF20CB15660049C0CB /* AboutWindow.swift in Sources */,
+				E8B6311A20CB3A6F003CADD0 /* PrefsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,39 +397,65 @@
 		};
 		E851172420C999E400873D2F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B033DEC3794E92B9D2C251B /* Pods-makeItHappen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = makeItHappen/makeItHappen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = U77G39SH6M;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MASShortcut\"",
+				);
 				INFOPLIST_FILE = makeItHappen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmq.makeItHappen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "makeItHappen/MakeItHappen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = recursive;
 			};
 			name = Debug;
 		};
 		E851172520C999E400873D2F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8E9B3959CAAEC27E0B2DDA3 /* Pods-makeItHappen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = makeItHappen/makeItHappen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = U77G39SH6M;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MASShortcut\"",
+				);
 				INFOPLIST_FILE = makeItHappen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmq.makeItHappen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "makeItHappen/MakeItHappen-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+				USER_HEADER_SEARCH_PATHS = recursive;
 			};
 			name = Release;
 		};

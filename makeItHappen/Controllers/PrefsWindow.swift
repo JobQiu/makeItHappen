@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AppKit
 
 protocol PrefsWindowDelegate {
     func prefsDidUpdate()
@@ -31,8 +32,6 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         
     }
-    
-    // this is a test
     
 }
 
