@@ -10,6 +10,8 @@
 - [ ] preference
 - [ ] fetch today's commitment
 - [ ] deal with content and split problems from it.
+- [ ] turn off record for certain applications. or using other method to find problems. like OCR, but it's very wasteful and not accurate. turn on OCR for certain applications, like intellij idea and other code applications.
+- [ ] using OCR locally or send the image and do it remotely?
 
 
 https://www.youtube.com/watch?v=i021PhLS54E&index=17&list=PLE83F832121568D36

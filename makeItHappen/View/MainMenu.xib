@@ -38,7 +38,7 @@
                 </menuItem>
                 <menuItem title="Preferences..." keyEquivalent="," id="jQ6-Hw-OJF">
                     <connections>
-                        <action selector="prefsChosen:" target="OO7-7k-kb7" id="wpC-8b-ujf"/>
+                        <action selector="prefsChosen:" target="OO7-7k-kb7" id="yYM-A8-4FD"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="q" id="nWG-5C-IX4">

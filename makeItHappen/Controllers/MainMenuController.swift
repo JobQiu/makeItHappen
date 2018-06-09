@@ -22,6 +22,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     var prefsWindow: PrefsWindow!
     
     
+    
     var numStaticMenuItems = 0;
     let headerMenuItems = 1;
     var menuIsOpen = false;

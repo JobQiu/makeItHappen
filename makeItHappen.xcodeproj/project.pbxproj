@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		E851171720C999E300873D2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E851171620C999E300873D2F /* AppDelegate.swift */; };
 		E851171B20C999E400873D2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E851171A20C999E400873D2F /* Assets.xcassets */; };
-		E8B6311A20CB3A6F003CADD0 /* PrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */; };
-		E8B6311B20CB3A6F003CADD0 /* PrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */; };
 		E8D58FA620CB148C0049C0CB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D58FA520CB148C0049C0CB /* MainMenu.xib */; };
 		E8D58FA820CB15050049C0CB /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FA720CB15050049C0CB /* MainMenuController.swift */; };
 		E8D58FAB20CB154B0049C0CB /* PrefsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FA920CB154B0049C0CB /* PrefsWindow.swift */; };
@@ -32,8 +30,6 @@
 		E851171F20C999E400873D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E851172020C999E400873D2F /* makeItHappen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = makeItHappen.entitlements; sourceTree = "<group>"; };
 		E8B6311520CB2BC4003CADD0 /* MakeItHappen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MakeItHappen-Bridging-Header.h"; sourceTree = "<group>"; };
-		E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsViewController.swift; sourceTree = "<group>"; };
-		E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrefsViewController.xib; sourceTree = "<group>"; };
 		E8B6311C20CB5D33003CADD0 /* MASShortcut */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MASShortcut; path = Pods/MASShortcut; sourceTree = "<group>"; };
 		E8B6311E20CB5D77003CADD0 /* Framework */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Framework; path = Pods/MASShortcut/Framework; sourceTree = "<group>"; };
 		E8B6312120CB5F24003CADD0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +113,6 @@
 		E8D58FB720CB1CDB0049C0CB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E8B6311920CB3A6F003CADD0 /* PrefsViewController.xib */,
 				E8D58FA520CB148C0049C0CB /* MainMenu.xib */,
 				E8D58FB220CB158A0049C0CB /* MyCommitment.xib */,
 				E8D58FAE20CB15660049C0CB /* AboutWindow.xib */,
@@ -141,7 +136,6 @@
 				E8D58FB120CB158A0049C0CB /* MyCommitment.swift */,
 				E8D58FAD20CB15660049C0CB /* AboutWindow.swift */,
 				E8D58FA920CB154B0049C0CB /* PrefsWindow.swift */,
-				E8B6311820CB3A6F003CADD0 /* PrefsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8D58FA620CB148C0049C0CB /* MainMenu.xib in Resources */,
-				E8B6311B20CB3A6F003CADD0 /* PrefsViewController.xib in Resources */,
 				E8D58FAC20CB154B0049C0CB /* PrefsWindow.xib in Resources */,
 				E8D58FB420CB158A0049C0CB /* MyCommitment.xib in Resources */,
 				E851171B20C999E400873D2F /* Assets.xcassets in Resources */,
@@ -275,7 +268,6 @@
 				E8D58FA820CB15050049C0CB /* MainMenuController.swift in Sources */,
 				E8D58FB320CB158A0049C0CB /* MyCommitment.swift in Sources */,
 				E8D58FAF20CB15660049C0CB /* AboutWindow.swift in Sources */,
-				E8B6311A20CB3A6F003CADD0 /* PrefsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
