@@ -116,6 +116,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
+            <point key="canvasLocation" x="-17" y="169"/>
         </window>
     </objects>
 </document>
