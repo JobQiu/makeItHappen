@@ -9,11 +9,13 @@
             <connections>
                 <outlet property="account" destination="Xvx-Ri-2hB" id="o5W-8F-SNt"/>
                 <outlet property="contentLabel" destination="1hy-l4-Ois" id="5i6-FH-jG8"/>
+                <outlet property="logLocation" destination="4Tb-B9-WZd" id="4dc-eM-GXt"/>
                 <outlet property="loginButton" destination="hT4-ye-Btg" id="KzX-rV-4C9"/>
                 <outlet property="loginFeedback" destination="Zhh-0w-R5l" id="Lf2-mB-3e7"/>
                 <outlet property="password" destination="aCE-HH-3rF" id="WfH-CP-kjK"/>
                 <outlet property="shortcutView" destination="L4a-j0-kNU" id="ISQ-ig-UXB"/>
                 <outlet property="showCount" destination="F7d-7V-HdE" id="ah0-w7-A4o"/>
+                <outlet property="startAtLogin" destination="hNC-NT-xWb" id="7N3-Rz-k3H"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -49,22 +51,14 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RP5-pe-hF3">
-                        <rect key="frame" x="291" y="263" width="83" height="17"/>
+                        <rect key="frame" x="11" y="176" width="90" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start at login" id="ADc-Hd-WIK">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start at login: " id="ADc-Hd-WIK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNC-NT-xWb">
-                        <rect key="frame" x="377" y="262" width="22" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XJ5-QY-ftk">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bSC-4N-w7X">
                         <rect key="frame" x="11" y="201" width="137" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -74,6 +68,10 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4a-j0-kNU" customClass="MASShortcutView">
+                        <rect key="frame" x="144" y="161" width="163" height="96"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hy-l4-Ois">
                         <rect key="frame" x="23" y="40" width="170" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -184,10 +182,25 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4a-j0-kNU" customClass="MASShortcutView">
-                        <rect key="frame" x="144" y="161" width="163" height="96"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UaA-N3-RJg">
+                        <rect key="frame" x="394" y="9" width="64" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
+                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wcR-3H-phK">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="savePreferences:" target="-2" id="jSN-6B-NNB"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNC-NT-xWb">
+                        <rect key="frame" x="97" y="174" width="22" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XJ5-QY-ftk">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <connections>

@@ -11,26 +11,23 @@ import Foundation
 import Cocoa
 
 final class Preferences: NSObject, NSCoding{
-    var account: String
-    var password_md5: String
-    var token: String
+    var keyloggerLocation: String
+    var startAtLogin: Bool
     
-    init(account: String, password_md5: String, token:String) {
-        self.account = account
-        self.password_md5 = password_md5
-        self.token = token
+    init(keyloggerLocation: String, startAtLogin: Bool) {
+        self.keyloggerLocation = keyloggerLocation
+        self.startAtLogin = startAtLogin
     }
     
     init?(coder aDecoder: NSCoder) {
-        self.account = (aDecoder.decodeObject(forKey: "account") as? String) ?? ""
-        self.password_md5 = (aDecoder.decodeObject(forKey: "password_md5") as? String) ?? ""
-        self.token = (aDecoder.decodeObject(forKey: "token") as? String) ?? ""
+        self.keyloggerLocation = (aDecoder.decodeObject(forKey: "keyloggerLocation") as? String) ?? ""
+        self.startAtLogin = (aDecoder.decodeObject(forKey: "startAtLogin") as? Bool) ?? false
     }
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(account, forKey: "account")
-        aCoder.encode(password_md5, forKey: "password_md5")
-        aCoder.encode(token, forKey: "token")
+        aCoder.encode(keyloggerLocation, forKey: "keyloggerLocation")
+        aCoder.encode(startAtLogin, forKey: "startAtLogin")
+        
     }
 }
 

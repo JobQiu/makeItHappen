@@ -46,7 +46,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         shortcutView.shortcutValueChange = { (sender) in
             
             let callback: (() -> Void)!
-            
+            print("short cut"+self.shortcutView.shortcutValue.keyCodeStringForKeyEquivalent)
             if self.shortcutView.shortcutValue.keyCodeStringForKeyEquivalent == "k" {
                 
                 self.kShortCut = self.shortcutView.shortcutValue
@@ -167,6 +167,16 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     private func md5ify(original:String)->String{
         return original
+    }
+    
+    @IBOutlet weak var logLocation: NSTextField!
+    
+    @IBOutlet weak var startAtLogin: NSButton!
+    
+    
+    @IBAction func savePreferences(_ sender: Any) {
+        
+        
     }
 }
 
