@@ -19,10 +19,12 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     // this is a test
     var kShortCut: MASShortcut!
     var count:Int = 0
+    var user:User = User(account: "",password_md5: "",token: "")
     
     @IBOutlet weak var contentLabel: NSTextField!
     @IBOutlet weak var showCount: NSTextField!
     @IBOutlet weak var shortcutView: MASShortcutView!
+    @IBOutlet weak var loginButton: NSButton!
     
     override var windowNibName : NSNib.Name! {
         return NSNib.Name(rawValue: "PrefsWindow")
@@ -30,6 +32,13 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     override func windowDidLoad() {
         super.windowDidLoad()
+        loadUser()
+        
+        if self.user.token != ""{
+            self.loginFeedback.stringValue = "Logged-in, current user "+self.user.account
+            self.loginButton.title="Re-Login"
+        }
+        
         self.window?.center()
         self.window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -110,6 +119,52 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         MASShortcutMonitor.shared().unregisterShortcut(shortcut)
     }
     
+    @IBOutlet weak var loginFeedback: NSTextField!
+    @IBOutlet weak var account: NSTextField!
+    @IBOutlet weak var password: NSSecureTextField!
+    
+    @IBAction func login(_ sender: Any) {
+        let account = self.account.stringValue
+        let password_md5 = md5ify(original: self.password.stringValue)
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:8081/api/getToken?account="+account+"&password="+password_md5)!)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                if json.keys.contains("token"){
+                    let token = json["token"] as! String
+                    self.loginFeedback.stringValue = token
+                    self.saveUser(user: User(account: account,password_md5: password_md5,token: token))
+                }
+            } catch {
+                print("JSON Serialization error")
+            }
+        }).resume()
+        
+    }
+    
+    
+    let userKey = "User"
+    
+    private func saveUser(user: User){
+        let data = NSKeyedArchiver.archivedData(withRootObject: user)
+        UserDefaults.standard.set(data, forKey: userKey)
+    }
+    
+    private func loadUser(){
+        guard
+            let data = UserDefaults.standard.object(forKey: userKey) as? Data,
+            let userTemp = NSKeyedUnarchiver.unarchiveObject(with: data) as? User else{
+                return
+        }
+        self.user = userTemp
+    }
+    
+    private func md5ify(original:String)->String{
+        return original
+    }
 }
 
 

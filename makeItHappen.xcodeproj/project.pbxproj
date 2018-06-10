@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80D05FC20CC89EE00DD61C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D05FB20CC89EE00DD61C6 /* User.swift */; };
+		E80D05FE20CC8DE200DD61C6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D05FD20CC8DE200DD61C6 /* Preferences.swift */; };
 		E851171720C999E300873D2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E851171620C999E300873D2F /* AppDelegate.swift */; };
 		E851171B20C999E400873D2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E851171A20C999E400873D2F /* Assets.xcassets */; };
 		E8D58FA620CB148C0049C0CB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D58FA520CB148C0049C0CB /* MainMenu.xib */; };
@@ -24,6 +26,8 @@
 /* Begin PBXFileReference section */
 		06106D8ADFDB6E178759236A /* Pods_makeItHappen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_makeItHappen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B033DEC3794E92B9D2C251B /* Pods-makeItHappen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makeItHappen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen.debug.xcconfig"; sourceTree = "<group>"; };
+		E80D05FB20CC89EE00DD61C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E80D05FD20CC8DE200DD61C6 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		E851171320C999E300873D2F /* makeItHappen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = makeItHappen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E851171620C999E300873D2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E851171A20C999E400873D2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				E8D58FB520CB1CC90049C0CB /* Commitment.swift */,
+				E80D05FB20CC89EE00DD61C6 /* User.swift */,
+				E80D05FD20CC8DE200DD61C6 /* Preferences.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,6 +274,8 @@
 				E8D58FA820CB15050049C0CB /* MainMenuController.swift in Sources */,
 				E8D58FB320CB158A0049C0CB /* MyCommitment.swift in Sources */,
 				E8D58FAF20CB15660049C0CB /* AboutWindow.swift in Sources */,
+				E80D05FE20CC8DE200DD61C6 /* Preferences.swift in Sources */,
+				E80D05FC20CC89EE00DD61C6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

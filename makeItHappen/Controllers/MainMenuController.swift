@@ -21,7 +21,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     var mycommitment: MyCommitment!
     var prefsWindow: PrefsWindow!
     
-    
+
     
     var numStaticMenuItems = 0;
     let headerMenuItems = 1;
@@ -132,7 +132,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     
     @objc func localSiteMenuItemSelected(_ sender:Any) {
         if let item = sender as? NSMenuItem, let service = item.representedObject as? NetService {
-            if debugOutput { print("- '\(service.name)'    -    '\(service.hostName ?? "<none>")'") }
+            
             if let hoststring = service.hostName {
                 // check for path
                 var path = ""
