@@ -73,16 +73,16 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
                     
                     let loc = CGEventTapLocation.cghidEventTap
                     // command a
-                    cmdd?.post(tap: loc)
-                    spad?.post(tap: loc)
-                    spau?.post(tap: loc)
-                    cmdu?.post(tap: loc)
+                    //cmdd?.post(tap: loc)
+                    //spad?.post(tap: loc)
+                    //spau?.post(tap: loc)
+                    //cmdu?.post(tap: loc)
                     
                     // command c, copy selected content to clipboard
-                    cmdd?.post(tap: loc)
-                    spcd?.post(tap: loc)
-                    spcu?.post(tap: loc)
-                    cmdu?.post(tap: loc)
+                    //cmdd?.post(tap: loc)
+                    //spcd?.post(tap: loc)
+                    //spcu?.post(tap: loc)
+                    //ngcmdu?.post(tap: loc)
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { // change 2 to desired number of seconds
                         // fetch content from clipboard
                         let pasteboard = NSPasteboard.general
@@ -131,6 +131,9 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
             do {
+                if data == nil{
+                    return
+                }
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
                 print(json)
                 if json.keys.contains("token"){
