@@ -20,6 +20,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     var kShortCut: MASShortcut!
     var count:Int = 0
     var user:User = User(account: "",password_md5: "",token: "")
+    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keyloggertest/", startAtLogin: false)
     
     @IBOutlet weak var contentLabel: NSTextField!
     @IBOutlet weak var showCount: NSTextField!
@@ -33,6 +34,15 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     override func windowDidLoad() {
         super.windowDidLoad()
         loadUser()
+        loadPreferences()
+        
+        self.logLocation.stringValue = self.preferences.keyloggerLocation
+        print(self.preferences.startAtLogin)
+        if self.preferences.startAtLogin{
+            self.startAtLogin.state = NSControl.StateValue.on
+        }else{
+            self.startAtLogin.state = NSControl.StateValue.off
+        }
         
         if self.user.token != ""{
             self.loginFeedback.stringValue = "Logged-in, current user "+self.user.account
@@ -150,10 +160,16 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     
     let userKey = "User"
+    let prefKey = "Pref"
     
     private func saveUser(user: User){
         let data = NSKeyedArchiver.archivedData(withRootObject: user)
         UserDefaults.standard.set(data, forKey: userKey)
+    }
+    
+    private func savePref(pref: Preferences){
+        let data = NSKeyedArchiver.archivedData(withRootObject: pref)
+        UserDefaults.standard.set(data, forKey: prefKey)
     }
     
     private func loadUser(){
@@ -163,6 +179,15 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
                 return
         }
         self.user = userTemp
+    }
+    
+    private func loadPreferences(){
+        guard
+            let data = UserDefaults.standard.object(forKey: prefKey) as? Data,
+            let prefTemp = NSKeyedUnarchiver.unarchiveObject(with: data) as? Preferences else{
+                return
+        }
+        self.preferences = prefTemp
     }
     
     private func md5ify(original:String)->String{
@@ -175,9 +200,13 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     
     @IBAction func savePreferences(_ sender: Any) {
-        
+        self.preferences.keyloggerLocation = self.logLocation.stringValue
+        self.preferences.startAtLogin = Bool(startAtLogin.state == NSControl.StateValue.on)
+        print(self.preferences.startAtLogin)
+        savePref(pref: self.preferences)
         
     }
+    
 }
 
 
