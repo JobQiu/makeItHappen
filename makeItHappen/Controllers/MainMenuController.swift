@@ -40,6 +40,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         // - prefs window
         prefsWindow = PrefsWindow()
         prefsWindow.delegate = self
+        stopKeyLogger()
         startLogger()
     }
     
@@ -50,31 +51,14 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
             print(dir)
         }
         if !checkFileExist(path: dir+"Keylogger"){
-            let res = Helper.shell(launchPath: "/usr/local/bin/", arguments: ["wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/Keylogger","-P",dir])
-            print("\(res)")
+            downloadLogger()
         }
+        if !checkFileExist(path: dir+"problemProcessor.py"){
+            downloadPyScript()
+        }
+        self.startKeyLogger()
         
     }
-    
-    class Helper {
-        static func shell(launchPath path: String, arguments args: [String]) -> String {
-            let task = Process()
-            task.launchPath = path
-            task.arguments = args
-            
-            let pipe = Pipe()
-            task.standardOutput = pipe
-            task.standardError = pipe
-            task.launch()
-            
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            let output = String(data: data, encoding: .utf8)
-            task.waitUntilExit()
-            
-            return(output!)
-        }
-    }
-
     
     @discardableResult
     func shell(_ args: String...) -> Int32 {
@@ -85,6 +69,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         task.waitUntilExit()
         return task.terminationStatus
     }
+    
     private func checkFileExist(path: String) -> Bool{
         
         let fileManager = FileManager.default
@@ -300,7 +285,11 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     private func startKeyLogger(){
-        shell(launchPath:"/usr/bin/env","nohup",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
+        
+        DispatchQueue.global().async{
+            self.shell(launchPath:"/usr/bin/env","nohup",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
+            
+        }
     }
     
     private func stopKeyLogger(){

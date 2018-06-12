@@ -4,6 +4,10 @@ import sys
 import os    
 import requests
 import re
+import datetime
+from datetime import timedelta
+
+now = datetime.datetime.now()
  
 #%%
 print 'Number of arguments:' , len(sys.argv), 'arguments.'
@@ -13,7 +17,20 @@ location = sys.argv[1]
 userId = sys.argv[2]
 token = sys.argv[3]
 #%%
-location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/12-6-2018"
+yesterday = now - timedelta(1)
+
+location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
+def removeYesterdayFolder():
+    top = location + (str)(yesterday.day)+"-"+(str)(yesterday.month)+"-"+(str)(yesterday.year)
+    print top
+    for root, dirs, files in os.walk(top, topdown=False):
+        for name in files:
+            os.remove (os.path.join(root,name))
+        for name in dirs:
+            os.remove (os.path,join(root,name))
+removeYesterdayFolder()
+
+location = location +(str)(now.day)+"-"+(str)(now.month)+"-"+(str)(now.year)
 print location
 userId = 1
 token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
@@ -59,7 +76,7 @@ def dealWithBackSpace(line):
 # select a problem and using a short cut to send them out.
 def removeOthers(line):
     line = line.replace("\RCMD(","\LCMD(")
-    return line.replace("\ESCAPE","").replace("\RCMD(","\LCMD(").replace("\RIGHTARROW","").replace("\LEFTARROW","").replace("\LCMD(v)","").replace("\LCMD(a)","").replace("\LCMD(c)","").replace("\LCMD(x)","").replace("\LCMD(z)","").replace("\LCMD(s)","").replace("\LCMD()","").replace("\n","").replace("\LCMD(","")
+    return line.replace("\ESCAPE","").replace("\RCMD(","\LCMD(").replace("\RIGHTARROW","").replace("\LEFTARROW","").replace("\LCMD(v)","").replace("\LCMD(c)","").replace("\LCMD(x)","").replace("\LCMD(z)","").replace("\LCMD(s)","").replace("\LCMD()","").replace("\n","").replace("\LCMD(","")
 
 def getProblemsFromLine(line):
     result = set()
@@ -81,12 +98,19 @@ def readFilePringProblems(path):
                 backspaced = dealWithBackSpace(shifted)
                 result = result.union(getProblemsFromLine(backspaced))
     result.discard("?")
-    for reee in result:
-        print reee
+    return result
+
+def deleteAfterProcessing(path):
+    pass
+
 for file_ in files:
+    print file_
     if file_ =="python":
         continue
-    readFilePringProblems(location+"/"+file_)
+    problems = readFilePringProblems(location+"/"+file_)
+    for p in problems:
+        sendProblem(p)
+    
     #readFilePringProblems(location+"/钉钉")
 
 #%%
