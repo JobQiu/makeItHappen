@@ -295,7 +295,8 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     private func downloadPyScript(){
-        
+        shell(launchPath: "/usr/local/bin/wget" ,"wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/problemProcessor.py","-P",self.prefsWindow.preferences.keyloggerLocation)
+        shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/problemProcessor.py")
     }
     
     private func startKeyLogger(){
