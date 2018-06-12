@@ -21,7 +21,7 @@ final class Preferences: NSObject, NSCoding{
     
     init?(coder aDecoder: NSCoder) {
         self.keyloggerLocation = (aDecoder.decodeObject(forKey: "keyloggerLocation") as? String) ?? ""
-        self.startAtLogin = (aDecoder.decodeObject(forKey: "startAtLogin") as? Bool) ?? false
+        self.startAtLogin = (aDecoder.decodeBool(forKey: "startAtLogin"))
     }
     
     func encode(with aCoder: NSCoder) {
@@ -29,5 +29,6 @@ final class Preferences: NSObject, NSCoding{
         aCoder.encode(startAtLogin, forKey: "startAtLogin")
         
     }
+    
 }
 
