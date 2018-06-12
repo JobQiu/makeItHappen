@@ -1,30 +1,6 @@
 # makeItHappen
 
-- [ ] start at login
-- [ ] store values
-- [ ] restful api call
-- [ ] login and fetch token
-- [ ] listen to keystroke and shortcut
-- [ ] screenshot and make comment
-- [ ] save images and upload
-- [ ] preference
-- [ ] fetch today's commitment
-- [ ] deal with content and split problems from it.
-- [ ] turn off record for certain applications. or using other method to find problems. like OCR, but it's very wasteful and not accurate. turn on OCR for certain applications, like intellij idea and other code applications.
-- [ ] using OCR locally or send the image and do it remotely?
+Make it happen is an app to record your daily problems. When the app is running in background, it will keep track your activity and record what it think is a problem, and collect them for your personal analysis. Every sentence you've typed end with ? will be recorded as a problem, and every sentence end with ! will be recorded as a todo. You don't need to open a special app to manage them, such as page, Evernote, and Pomotodo. We are keep developing applications on other platforms as well. For example, we hope when you have some good ideas on the way, you just need to talk with your phone to record them. 
 
+The problems will be collected to our website. http://18.218.219.51:8081/toLogin, all of them are only visable to yourself unless you select to publicize them. 
 
-https://www.youtube.com/watch?v=i021PhLS54E&index=17&list=PLE83F832121568D36
-
-https://www.youtube.com/watch?v=PMmjfCYNqW0&list=PLE83F832121568D36&index=32
-
-https://www.youtube.com/watch?v=2mmWEHUgEBo&list=PLE83F832121568D36&index=61 start at login
-
-https://www.youtube.com/watch?v=HY5uiTfjs8M&list=PLE83F832121568D36&index=62
-
-图床
-https://blog.nfz.moe/archives/collection-of-image-hosting.html
-
-https://developer.apple.com/machine-learning/
-
-https://www.raywenderlich.com/125071/nstask-tutorial-os-x
