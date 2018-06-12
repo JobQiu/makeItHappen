@@ -29,5 +29,6 @@ final class Preferences: NSObject, NSCoding{
         aCoder.encode(startAtLogin, forKey: "startAtLogin")
         
     }
+    
 }
 

@@ -24,6 +24,18 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>github.com</key>
+			<string></string>
+			<key>mywebsite.com</key>
+			<string>Yes</string>
+		</dict>
+	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2018 CongminQiu. All rights reserved.</string>
 	<key>NSMainNibFile</key>

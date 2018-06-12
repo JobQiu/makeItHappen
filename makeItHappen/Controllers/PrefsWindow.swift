@@ -11,6 +11,7 @@ import AppKit
 
 protocol PrefsWindowDelegate {
     func prefsDidUpdate()
+    
 }
 
 class PrefsWindow: NSWindowController, NSWindowDelegate {
@@ -20,7 +21,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     var kShortCut: MASShortcut!
     var count:Int = 0
     var user:User = User(account: "",password_md5: "",token: "")
-    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keyloggertest/", startAtLogin: false)
+    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false)
     
     @IBOutlet weak var contentLabel: NSTextField!
     @IBOutlet weak var showCount: NSTextField!
@@ -206,7 +207,24 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         savePref(pref: self.preferences)
         
     }
+  
     
+    private func getTodayDateStr() -> String{
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "dd-MM-yyyy"
+        
+        var myString = formatter.string(from: Date())
+        myString = myString.replacingOccurrences(of: "-0", with: "-")
+        if myString.starts(with: "0"){
+            myString = String(myString.suffix(1))
+        }
+        
+        return myString
+    }
+    
+
+
 }
 
 

