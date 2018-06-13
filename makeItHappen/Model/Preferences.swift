@@ -13,6 +13,7 @@ import Cocoa
 final class Preferences: NSObject, NSCoding{
     var keyloggerLocation: String
     var startAtLogin: Bool
+    var recentUpdateTime: String = ""
     
     init(keyloggerLocation: String, startAtLogin: Bool) {
         self.keyloggerLocation = keyloggerLocation

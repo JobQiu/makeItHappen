@@ -44,14 +44,13 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         stopKeyLogger()
         startLogger()
         
-        Timer.scheduledTimer(timeInterval: 30*60, target: self, selector: #selector(scanProblems), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(scanProblems), userInfo: nil, repeats: true)
         
     }
-    var count:Int = 1
     @objc
     private func scanProblems(){
-        count = count+1
-        print(count)
+        print(self.prefsWindow.user)
+        shell(launchPath:"/usr/bin/python2.7","/Users/xavier.qiu/Documents/keylogger/problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token)
     }
     
     private func startLogger(){

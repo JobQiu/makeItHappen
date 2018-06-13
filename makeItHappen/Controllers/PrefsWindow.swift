@@ -15,12 +15,20 @@ protocol PrefsWindowDelegate {
 }
 
 class PrefsWindow: NSWindowController, NSWindowDelegate {
+    override init(window: NSWindow?) {
+        super.init(window:window)
+        loadUser()
+        loadPreferences()
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     var delegate: PrefsWindowDelegate?
     // this is a test
     var kShortCut: MASShortcut!
     var count:Int = 0
-    var user:User = User(account: "",password_md5: "",token: "")
+    var user:User = User(account: "",password_md5: "",token: "",userId:0)
     var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false)
     
     @IBOutlet weak var contentLabel: NSTextField!
@@ -46,7 +54,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         }
         
         if self.user.token != ""{
-            self.loginFeedback.stringValue = "Logged-in, current user "+self.user.account
+            self.loginFeedback.stringValue = "Logged-in, current user "+self.user.account+" ;user id: "+String(self.user.userId)
             self.loginButton.title="Re-Login"
         }
         
@@ -149,8 +157,10 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
                 print(json)
                 if json.keys.contains("token"){
                     let token = json["token"] as! String
-                    self.loginFeedback.stringValue = token
-                    self.saveUser(user: User(account: account,password_md5: password_md5,token: token))
+                    let userId = json["userId"] as! String
+                    let b:Int? = Int(userId)
+                    self.loginFeedback.stringValue = token + userId
+                    self.saveUser(user: User(account: account,password_md5: password_md5,token: token, userId: b!))
                 }
             } catch {
                 print("JSON Serialization error")
