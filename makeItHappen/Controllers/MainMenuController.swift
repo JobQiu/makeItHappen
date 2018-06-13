@@ -38,10 +38,20 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         aboutWindow = AboutWindow()
         mycommitment = MyCommitment()
         // - prefs window
+        print("awake")
         prefsWindow = PrefsWindow()
         prefsWindow.delegate = self
         stopKeyLogger()
         startLogger()
+        
+        Timer.scheduledTimer(timeInterval: 30*60, target: self, selector: #selector(scanProblems), userInfo: nil, repeats: true)
+        
+    }
+    var count:Int = 1
+    @objc
+    private func scanProblems(){
+        count = count+1
+        print(count)
     }
     
     private func startLogger(){
@@ -228,18 +238,23 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     // MARK: ==== UI handlers
     
     @IBAction func quitChosen(_ sender: NSMenuItem) {
+        stopKeyLogger()
         NSApplication.shared.terminate(self)
     }
     
     @IBAction func aboutChosen(_ sender: NSMenuItem) {
+        aboutWindow = AboutWindow()
         aboutWindow.showWindow(nil)
     }
     
     @IBAction func prefsChosen(_ sender: NSMenuItem) {
+        prefsWindow = PrefsWindow()
+        prefsWindow.delegate = self
         prefsWindow.showWindow(nil)
     }
     
     @IBAction func openHomepage(_ sender: NSMenuItem) {
+        mycommitment = MyCommitment()
         mycommitment.showWindow(nil)
     }
     
@@ -285,10 +300,8 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     private func startKeyLogger(){
-        
         DispatchQueue.global().async{
             self.shell(launchPath:"/usr/bin/env","nohup",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
-            
         }
     }
     

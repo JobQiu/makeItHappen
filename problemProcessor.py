@@ -2,10 +2,12 @@
 
 import sys
 import os    
-import requests
 import re
 import datetime
 from datetime import timedelta
+import urllib2
+import urllib
+
 
 now = datetime.datetime.now()
  
@@ -18,8 +20,11 @@ userId = sys.argv[2]
 token = sys.argv[3]
 #%%
 yesterday = now - timedelta(1)
-
-location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
+if location == 'll':
+    userId = 1
+    token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
+    URL = "http://localhost:8081"
+    location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
 def removeYesterdayFolder():
     top = location + (str)(yesterday.day)+"-"+(str)(yesterday.month)+"-"+(str)(yesterday.year)
     print top
@@ -27,24 +32,17 @@ def removeYesterdayFolder():
         for name in files:
             os.remove (os.path.join(root,name))
         for name in dirs:
-            os.remove (os.path,join(root,name))
+            os.remove (os.path.join(root,name))
 removeYesterdayFolder()
 
 location = location +(str)(now.day)+"-"+(str)(now.month)+"-"+(str)(now.year)
 print location
-userId = 1
-token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
-URL = "http://localhost:8081"
 
 
 def sendProblem(problem):
-    PARAMS = {'q':problem, 
-              'userId':userId, 
-              'token':token}
-    r = requests.get(url = URL+"/api/addQ", params = PARAMS)     
-    # extracting data in json format
-    data = r.json()
-    return data
+    params = urllib.urlencode({'q':problem, 'userId': (str)(userId),'token':token})
+    contents = urllib2.urlopen(URL+'/api/addQ?' + params)
+    return contents
 #%%
 questionSymbol = "\RS(/)"
 
@@ -64,9 +62,13 @@ def dealWithShift(line):
     return result
 
 def dealWithBackSpace(line):
+    count = 0
     while(line.find("\DELETE")!=-1):
         index_ = line.find("\DELETE")
         line = line[:index_-1]+line[index_+17:]
+        count += 1
+        if count > 10:
+            break
     return line
 
 # todo how to deal with command c and command v?
@@ -82,10 +84,14 @@ def getProblemsFromLine(line):
     result = set()
     lines = re.split("\.|!",line)
     for l in lines:
+        count = 0
         while(l.find('?')!=-1):
             index_ = l.find('?')
             result.add(l[:index_+1].strip())
             l = l[index_+1:]
+            count += 1
+            if count > 15:
+                break
     return result
 
 def readFilePringProblems(path):
@@ -100,21 +106,17 @@ def readFilePringProblems(path):
     result.discard("?")
     return result
 
-def deleteAfterProcessing(path):
-    pass
-
 for file_ in files:
     print file_
     if file_ =="python":
         continue
     problems = readFilePringProblems(location+"/"+file_)
     for p in problems:
-        sendProblem(p)
-    
-    #readFilePringProblems(location+"/钉钉")
+        print sendProblem(p)
+
 
 #%%
-testLine="\RS(erg/)\RS(fewg.)\RS(gweg,)\RS(;'gewgew[]\=-)\LS(09876gfeg54321`)this is a test"
-testLine="qqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACEqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACE"
-print dealWithShift(testLine)
-print dealWithBackSpace(testLine)
+#testLine="\RS(erg/)\RS(fewg.)\RS(gweg,)\RS(;'gewgew[]\=-)\LS(09876gfeg54321`)this is a test"
+#testLine="qqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACEqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACE"
+#print dealWithShift(testLine)
+#print dealWithBackSpace(testLine)
