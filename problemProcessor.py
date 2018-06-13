@@ -19,6 +19,7 @@ location = sys.argv[1]
 userId = sys.argv[2]
 token = sys.argv[3]
 #%%
+
 yesterday = now - timedelta(1)
 if location == 'll':
     userId = 1
@@ -38,12 +39,13 @@ removeYesterdayFolder()
 location = location +(str)(now.day)+"-"+(str)(now.month)+"-"+(str)(now.year)
 print location
 
-
 def sendProblem(problem):
     params = urllib.urlencode({'q':problem, 'userId': (str)(userId),'token':token})
     contents = urllib2.urlopen(URL+'/api/addQ?' + params)
     return contents
+
 #%%
+    
 questionSymbol = "\RS(/)"
 
 files = os.listdir(location)
