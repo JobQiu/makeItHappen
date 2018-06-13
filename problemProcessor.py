@@ -15,20 +15,20 @@ now = datetime.datetime.now()
 print 'Number of arguments:' , len(sys.argv), 'arguments.'
 print 'Argument List: ', str(sys.argv)
 
-location = sys.argv[1]
-userId = sys.argv[2]
-token = sys.argv[3]
-#%%
 
+#%%
+URL = "http://localhost:8081"
 yesterday = now - timedelta(1)
-if location == 'll':
+if sys.argv == None or len(sys.argv)==0 or sys.argv[1] == 'll':
     userId = 1
     token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
-    URL = "http://localhost:8081"
     location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
+else:
+    location = sys.argv[1]
+    userId = (int)(sys.argv[2])
+    token = sys.argv[3]    
 def removeYesterdayFolder():
     top = location + (str)(yesterday.day)+"-"+(str)(yesterday.month)+"-"+(str)(yesterday.year)
-    print top
     for root, dirs, files in os.walk(top, topdown=False):
         for name in files:
             os.remove (os.path.join(root,name))
@@ -37,7 +37,7 @@ def removeYesterdayFolder():
 removeYesterdayFolder()
 
 location = location +(str)(now.day)+"-"+(str)(now.month)+"-"+(str)(now.year)
-print location
+
 
 def sendProblem(problem):
     params = urllib.urlencode({'q':problem, 'userId': (str)(userId),'token':token})
@@ -114,8 +114,10 @@ for file_ in files:
         continue
     problems = readFilePringProblems(location+"/"+file_)
     for p in problems:
-        print sendProblem(p)
+        sendProblem(p)
 
+
+print "done"
 
 #%%
 #testLine="\RS(erg/)\RS(fewg.)\RS(gweg,)\RS(;'gewgew[]\=-)\LS(09876gfeg54321`)this is a test"
