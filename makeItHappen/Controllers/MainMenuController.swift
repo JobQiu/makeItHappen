@@ -50,6 +50,10 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     @objc
     private func scanProblems(){
         print(self.prefsWindow.user)
+        let dir = self.prefsWindow.preferences.keyloggerLocation
+        if !checkFileExist(path: dir+"problemProcessor.py"){
+            downloadPyScript()
+        }
         shell(launchPath:"/usr/bin/python2.7","/Users/xavier.qiu/Documents/keylogger/problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token)
     }
     
@@ -62,6 +66,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         if !checkFileExist(path: dir+"Keylogger"){
             downloadLogger()
         }
+        deletePyScript()
         if !checkFileExist(path: dir+"problemProcessor.py"){
             downloadPyScript()
         }
@@ -296,6 +301,10 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     private func downloadPyScript(){
         shell(launchPath: "/usr/local/bin/wget" ,"wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/problemProcessor.py","-P",self.prefsWindow.preferences.keyloggerLocation)
         shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/problemProcessor.py")
+    }
+    
+    private func deletePyScript(){
+        shell(launchPath:"/usr/bin/env","rm",self.prefsWindow.preferences.keyloggerLocation+"/problemProcessor.py")
     }
     
     private func startKeyLogger(){

@@ -5,3 +5,5 @@ Make it happen is an app to record your daily problems. When the app is running 
 The problems will be collected to our website. http://18.218.219.51:8081/toLogin, all of them are only visible to yourself unless you choose to publicize them.
 
 The applications and websites are still in testing.
+
+----
