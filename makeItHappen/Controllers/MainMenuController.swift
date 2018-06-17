@@ -247,17 +247,20 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     @IBAction func aboutChosen(_ sender: NSMenuItem) {
+        aboutWindow?.close()
         aboutWindow = AboutWindow()
         aboutWindow.showWindow(nil)
     }
     
     @IBAction func prefsChosen(_ sender: NSMenuItem) {
+        prefsWindow?.close()
         prefsWindow = PrefsWindow()
         prefsWindow.delegate = self
         prefsWindow.showWindow(nil)
     }
     
     @IBAction func openHomepage(_ sender: NSMenuItem) {
+        mycommitment?.close()
         mycommitment = MyCommitment()
         mycommitment.showWindow(nil)
     }

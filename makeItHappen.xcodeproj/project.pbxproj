@@ -20,6 +20,7 @@
 		E8D58FB320CB158A0049C0CB /* MyCommitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FB120CB158A0049C0CB /* MyCommitment.swift */; };
 		E8D58FB420CB158A0049C0CB /* MyCommitment.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D58FB220CB158A0049C0CB /* MyCommitment.xib */; };
 		E8D58FB620CB1CC90049C0CB /* Commitment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D58FB520CB1CC90049C0CB /* Commitment.swift */; };
+		E8E7ED0820D708F3005A6A8D /* MyCommitmentSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8E7ED0720D708F3005A6A8D /* MyCommitmentSmall.xib */; };
 		E8E9A54620CB62BD00859C13 /* Pods_makeItHappen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06106D8ADFDB6E178759236A /* Pods_makeItHappen.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		E8D58FB120CB158A0049C0CB /* MyCommitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommitment.swift; sourceTree = "<group>"; };
 		E8D58FB220CB158A0049C0CB /* MyCommitment.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCommitment.xib; sourceTree = "<group>"; };
 		E8D58FB520CB1CC90049C0CB /* Commitment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commitment.swift; sourceTree = "<group>"; };
+		E8E7ED0720D708F3005A6A8D /* MyCommitmentSmall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCommitmentSmall.xib; sourceTree = "<group>"; };
 		E8E9B3959CAAEC27E0B2DDA3 /* Pods-makeItHappen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makeItHappen.release.xcconfig"; path = "Pods/Target Support Files/Pods-makeItHappen/Pods-makeItHappen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 			children = (
 				E8D58FA520CB148C0049C0CB /* MainMenu.xib */,
 				E8D58FB220CB158A0049C0CB /* MyCommitment.xib */,
+				E8E7ED0720D708F3005A6A8D /* MyCommitmentSmall.xib */,
 				E8D58FAE20CB15660049C0CB /* AboutWindow.xib */,
 				E8D58FAA20CB154B0049C0CB /* PrefsWindow.xib */,
 			);
@@ -218,6 +221,7 @@
 				E8D58FAC20CB154B0049C0CB /* PrefsWindow.xib in Resources */,
 				E8D58FB420CB158A0049C0CB /* MyCommitment.xib in Resources */,
 				E851171B20C999E400873D2F /* Assets.xcassets in Resources */,
+				E8E7ED0820D708F3005A6A8D /* MyCommitmentSmall.xib in Resources */,
 				E8D58FB020CB15660049C0CB /* AboutWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
