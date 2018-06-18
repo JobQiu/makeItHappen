@@ -10,6 +10,23 @@ import Cocoa
 
 class MyCommitment: NSWindowController {
     
+    @IBOutlet weak var doneTaskLabel: NSTextField!
+    @IBOutlet weak var totalTaskLabel: NSTextField!
+    
+    @IBOutlet weak var dreamLabel: NSTextField!
+    @IBOutlet weak var questionLabel: NSTextField!
+    
+    @IBOutlet weak var timeLabel: NSTextField!
+    
+   
+    @IBAction func refreshAction(_ sender: Any) {
+    }
+    
+    @IBAction func unpinAction(_ sender: Any) {
+    }
+    
+    @IBAction func doneAction(_ sender: Any) {
+    }
     override var windowNibName : NSNib.Name! {
         return NSNib.Name(rawValue: "MyCommitment")
     }

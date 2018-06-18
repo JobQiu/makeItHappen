@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "makeItHappen/Controllers/MainMenuController.swift"
-            timestampString = "550963371.231004"
+            timestampString = "550980589.599697"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "259"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "makeItHappen/Controllers/MainMenuController.swift"
-            timestampString = "550963371.231097"
+            timestampString = "550980589.5997699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "makeItHappen/Controllers/MainMenuController.swift"
-            timestampString = "550963371.231158"
+            timestampString = "550980589.59982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -113,6 +113,84 @@
             endingLineNumber = "45"
             landmarkName = "windowDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "makeItHappen/Controllers/MyCommitment.swift"
+            timestampString = "550980599.133233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "MyCommitment"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "makeItHappen.MyCommitment.doneTaskLabel.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSTextField&gt;"
+                  moduleName = "makeItHappen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xavier.qiu/Documents/GitHub/learnmacapp/makeItHappen/makeItHappen/Controllers/MyCommitment.swift"
+                  timestampString = "550980607.624194"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "makeItHappen.MyCommitment.doneTaskLabel.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSTextField&gt;"
+                  moduleName = "makeItHappen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xavier.qiu/Documents/GitHub/learnmacapp/makeItHappen/makeItHappen/Controllers/MyCommitment.swift"
+                  timestampString = "550980607.6552989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "makeItHappen.MyCommitment.init(window: Swift.Optional&lt;__ObjC.NSWindow&gt;) -&gt; makeItHappen.MyCommitment"
+                  moduleName = "makeItHappen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xavier.qiu/Documents/GitHub/learnmacapp/makeItHappen/makeItHappen/Controllers/MyCommitment.swift"
+                  timestampString = "550980607.657621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "39">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "makeItHappen.MyCommitment.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;makeItHappen.MyCommitment&gt;"
+                  moduleName = "makeItHappen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xavier.qiu/Documents/GitHub/learnmacapp/makeItHappen/makeItHappen/Controllers/MyCommitment.swift"
+                  timestampString = "550980607.659292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
