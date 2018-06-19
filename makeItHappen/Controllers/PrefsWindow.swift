@@ -28,7 +28,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     // this is a test
     var kShortCut: MASShortcut!
     var count:Int = 0
-    var user:User = User(account: "",password_md5: "",token: "",userId:0)
+    var user:User = User(account: "",password_md5: "",token: "",userId:0,dream:"")
     var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false)
     
     @IBOutlet weak var contentLabel: NSTextField!
@@ -145,7 +145,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     @IBAction func login(_ sender: Any) {
         let account = self.account.stringValue
         let password_md5 = md5ify(original: self.password.stringValue)
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:8081/api/getToken?account="+account+"&password="+password_md5)!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/getToken?account="+account+"&password="+password_md5)!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -158,9 +158,10 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
                 if json.keys.contains("token"){
                     let token = json["token"] as! String
                     let userId = json["userId"] as! String
+                    let dream = json["dream"] as! String
                     let b:Int? = Int(userId)
                     self.loginFeedback.stringValue = token + userId
-                    self.saveUser(user: User(account: account,password_md5: password_md5,token: token, userId: b!))
+                    self.saveUser(user: User(account: account,password_md5: password_md5,token: token, userId: b!,dream:dream))
                 }
             } catch {
                 print("JSON Serialization error")

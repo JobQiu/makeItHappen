@@ -15,12 +15,15 @@ final class User: NSObject, NSCoding{
     var password_md5: String
     var token: String
     var userId: Int
+    var dream: String
+    let homepage = "http://127.0.0.1:8081"
     
-    init(account: String, password_md5: String, token:String, userId: Int) {
+    init(account: String, password_md5: String, token:String, userId: Int, dream: String) {
         self.account = account
         self.password_md5 = password_md5
         self.token = token
         self.userId = userId
+        self.dream = dream
     }
     
     init?(coder aDecoder: NSCoder) {
@@ -28,6 +31,7 @@ final class User: NSObject, NSCoding{
         self.password_md5 = (aDecoder.decodeObject(forKey: "password_md5") as? String) ?? ""
         self.token = (aDecoder.decodeObject(forKey: "token") as? String) ?? ""
         self.userId = Int(aDecoder.decodeInt32(forKey: "userId"))
+        self.dream = (aDecoder.decodeObject(forKey: "dream") as? String) ?? ""
     }
     
     func encode(with aCoder: NSCoder) {
@@ -35,5 +39,6 @@ final class User: NSObject, NSCoding{
         aCoder.encode(password_md5, forKey: "password_md5")
         aCoder.encode(token, forKey: "token")
         aCoder.encode(userId, forKey: "userId")
+        aCoder.encode(dream, forKey:"dream")
     }
 }

@@ -44,6 +44,11 @@ def sendProblem(problem):
     contents = urllib2.urlopen(URL+'/api/addQ?' + params)
     return contents
 
+def sendTodo(todo):
+    params = urllib.urlencode({'todo':todo, 'userId': (str)(userId),'token':token})
+    contents = urllib2.urlopen(URL+'/api/addT?' + params)
+    return contents
+
 #%%
     
 questionSymbol = "\RS(/)"
@@ -73,11 +78,6 @@ def dealWithBackSpace(line):
             break
     return line
 
-# todo how to deal with command c and command v?
-# todo deal with arrows?
-# todo deal with uncorrelerated contents?
-# using the first method seems to be a more accurate way.
-# select a problem and using a short cut to send them out.
 def removeOthers(line):
     line = line.replace("\RCMD(","\LCMD(")
     return line.replace("\ESCAPE","").replace("\RCMD(","\LCMD(").replace("\RIGHTARROW","").replace("\LEFTARROW","").replace("\LCMD(v)","").replace("\LCMD(c)","").replace("\LCMD(x)","").replace("\LCMD(z)","").replace("\LCMD(s)","").replace("\LCMD()","").replace("\n","").replace("\LCMD(","")
@@ -101,13 +101,25 @@ def readFilePringProblems(path):
     with open(path) as fp:
         for line in fp:
             if questionSymbol in line:
+                print "origianl:"+line
                 shifted = dealWithShift(line)
                 shifted= removeOthers(shifted)
                 backspaced = dealWithBackSpace(shifted)
+                print "after:" + backspaced
+                temp = getProblemsFromLine(backspaced)
+                result = result.union(temp)
+            if "?" in line:
+                print "origianl:"+line
+                shifted = dealWithShift(line)
+                shifted= removeOthers(shifted)
+                backspaced = dealWithBackSpace(shifted)
+                print "after:" + backspaced
                 result = result.union(getProblemsFromLine(backspaced))
+            
     result.discard("?")
     return result
 
+#%%
 for file_ in files:
     print file_
     if file_ =="python":
