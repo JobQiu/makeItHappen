@@ -1,64 +1,13 @@
-#!/usr/bin/python
-
 import datetime
 import os
 import re
-import sys
-import urllib
-import urllib2
-from datetime import timedelta
-
 from string import ascii_lowercase
 
+location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
+
 now = datetime.datetime.now()
-
-# %%
-print 'Number of arguments:', len(sys.argv), 'arguments.'
-print 'Argument List: ', str(sys.argv)
-
-# %%
-URL = "http://localhost:8081"
-yesterday = now - timedelta(1)
-test = True
-if test:
-    userId = 1
-    token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
-    location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
-else:
-    location = sys.argv[1]
-    userId = (int)(sys.argv[2])
-    token = sys.argv[3]
-
-
-def removeYesterdayFolder():
-    top = location + (str)(yesterday.day) + "-" + (str)(yesterday.month) + "-" + (str)(yesterday.year)
-    for root, dirs, files in os.walk(top, topdown=False):
-        for name in files:
-            os.remove(os.path.join(root, name))
-        for name in dirs:
-            os.remove(os.path.join(root, name))
-
-
-removeYesterdayFolder()
-
 location = location + (str)(now.day) + "-" + (str)(now.month) + "-" + (str)(now.year)
 
-
-def sendProblem(problem):
-    params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token})
-    contents = urllib2.urlopen(URL + '/api/addQ?' + params)
-    return contents
-
-
-def sendTodo(todo):
-    params = urllib.urlencode({'todo': todo, 'userId': (str)(userId), 'token': token})
-    contents = urllib2.urlopen(URL + '/api/addT?' + params)
-    return contents
-
-
-files = os.listdir(location)
-
-# %% tested in test.py
 print location
 shift_dict = {
     ",": "<",
@@ -187,16 +136,11 @@ def replaceWithShiftValue(beforeShift):
     s = set(beforeShift)
     for c in s:
         if c in shift_dict.keys():
-            beforeShift = beforeShift.replace((str)(c), shift_dict.get(c))
+            beforeShift = beforeShift.replace((c), shift_dict.get(c))
     return beforeShift
 
 
 def dealWithShift(line):
-    """
-
-    :param line:
-    :return:
-    """
     testLine = line.replace("\LS", "\RS")
     testLines = testLine.split("\RS(")
     result = testLines[0]
@@ -274,13 +218,5 @@ for file_ in files:
     if file_ == "python":
         continue
     problems = readFilePringProblems(location + "/" + file_)
-    for p in problems:
-        sendProblem(p)
 
 print "done"
-
-# %%
-# testLine="\RS(erg/)\RS(fewg.)\RS(gweg,)\RS(;'gewgew[]\=-)\LS(09876gfeg54321`)this is a test"
-# testLine="qqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACEqqqqqqq\DELETE|BACKSPACE\DELETE|BACKSPACE"
-# print dealWithShift(testLine)
-# print dealWithBackSpace(testLine)
