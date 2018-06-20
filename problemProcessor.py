@@ -304,7 +304,7 @@ for file_ in files:
         sendProblem(p)
     for t in todos:
         sendTodo(t)
-
+    os.remove(location + "/" + file_)
 print "done"
 
 # %%

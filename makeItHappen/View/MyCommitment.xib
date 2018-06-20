@@ -34,7 +34,7 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oly-DD-Myn">
                         <rect key="frame" x="66" y="-18" width="453" height="51"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="send todo to peacock" drawsBackground="YES" id="Hp2-5h-daK">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="delete files  after send todo and questions.todo" drawsBackground="YES" id="Hp2-5h-daK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
