@@ -137,8 +137,11 @@ def getTodosFromLine(line):
     lines = line.split(".todo")
     for i in range(len(lines) - 1):
         sentences = re.split("\.|!?", lines[i])
+        if len(sentences) == 1:
+            result.add(sentences[0])
+            continue
         todo = sentences.pop()
-        if todo.strip() == "":
+        if todo.strip() == "" and len(sentences >= 1):
             todo = sentences.pop()
         result.add(todo)
     return result
