@@ -67,10 +67,18 @@ class MyCommitment: NSWindowController {
                 if json.keys.contains("content"){
                     let content = json["content"] as! String
                     question = content
-                    let userId = json["timeSpend"] as! String
-                    let b:Int? = Int(userId)
+                    let timeSpend = json["timeSpend"] as! Int
+                    var done = json["done"] as! Int
+                    
+                    let totalTask = json["totalTask"] as! Int
+                    if done != totalTask{
+                        done = done + 1
+                    }
                     DispatchQueue.main.async {
                         self.questionLabel.stringValue = content
+                        self.totalTaskLabel.stringValue = "\(totalTask)"
+                        
+                        self.doneTaskLabel.stringValue = "\(done)"
                     }
                     //let userId = json["timeSpend"] as! String
                     //let b:Int? = Int(userId)
