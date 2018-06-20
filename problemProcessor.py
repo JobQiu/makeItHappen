@@ -296,15 +296,21 @@ def readFilePringProblems(path):
 
 # %%
 for file_ in files:
+    all_sent = True
     print file_
     if file_ == "python":
         continue
     problems, todos = readFilePringProblems(location + "/" + file_)
     for p in problems:
-        sendProblem(p)
+        result = sendProblem(p)
+        if result.code != 200:
+            all_sent = False
     for t in todos:
-        sendTodo(t)
-    os.remove(location + "/" + file_)
+        result = sendTodo(t)
+        if result.code != 200:
+            all_sent = False
+    if all_sent:
+        os.remove(location + "/" + file_)
 print "done"
 
 # %%

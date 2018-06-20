@@ -5,6 +5,12 @@ from string import ascii_lowercase
 
 location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
 
+import urllib
+import urllib2
+
+URL = "http://localhost:8081"
+userId = 1
+token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
 now = datetime.datetime.now()
 location = location + (str)(now.day) + "-" + (str)(now.month) + "-" + (str)(now.year)
 
@@ -238,11 +244,23 @@ def readFilePringProblems(path):
     return result, todos
 
 
+def sendProblem(problem):
+    params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token})
+    contents = urllib2.urlopen(URL + '/api/addQ?' + params)
+    return contents
+
+
 # %%
 for file_ in files:
+    all_sent = True
     print file_
     if file_ == "python":
         continue
     problems, todos = readFilePringProblems(location + "/" + file_)
-
+    for p in problems:
+        result = sendProblem(p)
+        if result.code != 200:
+            all_sent = False
+    # if all_sent:
+    #    os.remove(location + "/" + file_)
 print "done"
