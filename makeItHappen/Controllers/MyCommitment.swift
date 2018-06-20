@@ -26,6 +26,39 @@ class MyCommitment: NSWindowController {
     }
     
     @IBAction func doneAction(_ sender: Any) {
+        
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId))!)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                if data == nil{
+                    return
+                }
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                if json.keys.contains("content"){
+                    let content = json["content"] as! String
+                    let timeSpend = json["timeSpend"] as! Int
+                    var done = json["done"] as! Int
+                    
+                    let totalTask = json["totalTask"] as! Int
+                    if done != totalTask{
+                        done = done + 1
+                    }
+                    DispatchQueue.main.async {
+                        self.questionLabel.stringValue = content
+                        self.totalTaskLabel.stringValue = "\(totalTask)"
+                        
+                        self.doneTaskLabel.stringValue = "\(done)"
+                    }
+                    //let userId = json["timeSpend"] as! String
+                    //let b:Int? = Int(userId)
+                }
+            } catch {
+                print("JSON Serialization error")
+            }
+        }).resume()
     }
     override var windowNibName : NSNib.Name! {
         return NSNib.Name(rawValue: "MyCommitment")
@@ -41,6 +74,15 @@ class MyCommitment: NSWindowController {
         self.dreamLabel.stringValue = self.user.dream
     }
     
+    var commitment:Commitment = Commitment(content: "",
+                                           id:0,
+                                           processing:0,
+                                           timeSpend:0,
+                                           totalTask:0,
+                                           type:"",
+                                           priority:0,
+                                           done:0)
+
     var user:User = User(account: "",password_md5: "",token: "",userId:0,dream:"")
     let userKey = "User"
     private func loadUser(){
@@ -53,7 +95,7 @@ class MyCommitment: NSWindowController {
     }
     
     private func loadCommitment(){
-        var question:String = "test"
+        
         var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId))!)
         request.httpMethod = "GET"
         
@@ -66,8 +108,8 @@ class MyCommitment: NSWindowController {
                 print(json)
                 if json.keys.contains("content"){
                     let content = json["content"] as! String
-                    question = content
                     let timeSpend = json["timeSpend"] as! Int
+                    let priority = json["priority"] as! Int
                     var done = json["done"] as! Int
                     
                     let totalTask = json["totalTask"] as! Int
@@ -79,6 +121,8 @@ class MyCommitment: NSWindowController {
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
+                        self.commitment.priority = priority
+                        self.commitment.timeSpend = timeSpend
                     }
                     //let userId = json["timeSpend"] as! String
                     //let b:Int? = Int(userId)
