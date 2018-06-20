@@ -261,6 +261,4 @@ for file_ in files:
         result = sendProblem(p)
         if result.code != 200:
             all_sent = False
-    # if all_sent:
-    #    os.remove(location + "/" + file_)
 print "done"

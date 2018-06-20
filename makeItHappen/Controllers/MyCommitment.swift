@@ -37,7 +37,7 @@ class MyCommitment: NSWindowController {
         window!.styleMask.remove(.resizable)
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         loadUser()
-        //loadCommitment()
+        loadCommitment()
         self.dreamLabel.stringValue = self.user.dream
     }
     
@@ -53,7 +53,7 @@ class MyCommitment: NSWindowController {
     }
     
     private func loadCommitment(){
-        
+        var question:String = "test"
         var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId))!)
         request.httpMethod = "GET"
         
@@ -66,7 +66,12 @@ class MyCommitment: NSWindowController {
                 print(json)
                 if json.keys.contains("content"){
                     let content = json["content"] as! String
-                    self.questionLabel.stringValue = content
+                    question = content
+                    let userId = json["timeSpend"] as! String
+                    let b:Int? = Int(userId)
+                    DispatchQueue.main.async {
+                        self.questionLabel.stringValue = content
+                    }
                     //let userId = json["timeSpend"] as! String
                     //let b:Int? = Int(userId)
                 }
