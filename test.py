@@ -207,6 +207,7 @@ def removeOthers(line):
 
 def readFilePringProblems(path):
     result = set()
+    todos = set()
     with open(path) as fp:
 
         index_ = 1
@@ -224,15 +225,17 @@ def readFilePringProblems(path):
                     print "\t" + ss
                 index_ = index_ + 1
                 result = result.union(sss)
+
             if containTodo(line):
                 print (str)(index_) + "\t" + (cleanLine(line))
                 after = removeOthers(dealWithBackSpace(dealWithShift(cleanLine(line))))
                 # print (str)(index_) + "\t" + after
-                sss = getTodosFromLine(after)
-                for ss in sss:
-                    print "\t" + ss
+                sss2 = getTodosFromLine(after)
+                for ss2 in sss2:
+                    print "\t" + ss2
                 index_ += 1
-    return result
+                todos = todos.union(sss2)
+    return result, todos
 
 
 # %%
@@ -240,6 +243,6 @@ for file_ in files:
     print file_
     if file_ == "python":
         continue
-    problems = readFilePringProblems(location + "/" + file_)
+    problems, todos = readFilePringProblems(location + "/" + file_)
 
 print "done"
