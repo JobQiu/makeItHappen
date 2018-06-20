@@ -132,6 +132,18 @@ def getProblemsFromLine(line):
     return result
 
 
+def getTodosFromLine(line):
+    result = set()
+    lines = line.split(".todo")
+    for i in range(len(lines) - 1):
+        sentences = re.split("\.|!?", lines[i])
+        todo = sentences.pop()
+        if todo.strip() == "":
+            todo = sentences.pop()
+        result.add(todo)
+    return result
+
+
 def replaceWithShiftValue(beforeShift):
     s = set(beforeShift)
     for c in s:
@@ -209,6 +221,14 @@ def readFilePringProblems(path):
                     print "\t" + ss
                 index_ = index_ + 1
                 result = result.union(sss)
+            if containTodo(line):
+                print (str)(index_) + "\t" + (cleanLine(line))
+                after = removeOthers(dealWithBackSpace(dealWithShift(cleanLine(line))))
+                # print (str)(index_) + "\t" + after
+                sss = getTodosFromLine(after)
+                for ss in sss:
+                    print "\t" + ss
+                index_ += 1
     return result
 
 
