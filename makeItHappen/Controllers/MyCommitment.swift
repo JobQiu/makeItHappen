@@ -20,14 +20,8 @@ class MyCommitment: NSWindowController {
     
    
     @IBAction func refreshAction(_ sender: Any) {
-    }
-    
-    @IBAction func unpinAction(_ sender: Any) {
-    }
-    
-    @IBAction func doneAction(_ sender: Any) {
         
-        var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId))!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/changeATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&priority="+String(self.commitment.priority)+"&timeSpend="+String(self.commitment.timeSpend))!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -39,7 +33,10 @@ class MyCommitment: NSWindowController {
                 print(json)
                 if json.keys.contains("content"){
                     let content = json["content"] as! String
+                    let type = json["type"] as! String
                     let timeSpend = json["timeSpend"] as! Int
+                    let id = json["id"] as! Int
+                    let priority = json["priority"] as! Int
                     var done = json["done"] as! Int
                     
                     let totalTask = json["totalTask"] as! Int
@@ -51,6 +48,56 @@ class MyCommitment: NSWindowController {
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
+                        self.commitment.priority = priority
+                        self.commitment.timeSpend = timeSpend
+                        self.commitment.type = type
+                        self.commitment.id = id
+                    }
+                    //let userId = json["timeSpend"] as! String
+                    //let b:Int? = Int(userId)
+                }
+            } catch {
+                print("JSON Serialization error")
+            }
+        }).resume()
+    }
+    
+    @IBAction func unpinAction(_ sender: Any) {
+    }
+    
+    @IBAction func doneAction(_ sender: Any) {
+        
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/doneATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&timeSpend="+String(self.commitment.timeSpend))!)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                if data == nil{
+                    return
+                }
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                if json.keys.contains("content"){
+                    let content = json["content"] as! String
+                    let type = json["type"] as! String
+                    let timeSpend = json["timeSpend"] as! Int
+                    let id = json["id"] as! Int
+                    let priority = json["priority"] as! Int
+                    var done = json["done"] as! Int
+                    
+                    let totalTask = json["totalTask"] as! Int
+                    if done != totalTask{
+                        done = done + 1
+                    }
+                    DispatchQueue.main.async {
+                        self.questionLabel.stringValue = content
+                        self.totalTaskLabel.stringValue = "\(totalTask)"
+                        
+                        self.doneTaskLabel.stringValue = "\(done)"
+                        self.commitment.priority = priority
+                        self.commitment.timeSpend = timeSpend
+                        self.commitment.type = type
+                        self.commitment.id = id
                     }
                     //let userId = json["timeSpend"] as! String
                     //let b:Int? = Int(userId)
@@ -108,6 +155,7 @@ class MyCommitment: NSWindowController {
                 print(json)
                 if json.keys.contains("content"){
                     let content = json["content"] as! String
+                    let type = json["type"] as! String
                     let timeSpend = json["timeSpend"] as! Int
                     let priority = json["priority"] as! Int
                     var done = json["done"] as! Int
@@ -123,6 +171,7 @@ class MyCommitment: NSWindowController {
                         self.doneTaskLabel.stringValue = "\(done)"
                         self.commitment.priority = priority
                         self.commitment.timeSpend = timeSpend
+                        self.commitment.type = type
                     }
                     //let userId = json["timeSpend"] as! String
                     //let b:Int? = Int(userId)
