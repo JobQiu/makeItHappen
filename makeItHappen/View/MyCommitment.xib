@@ -11,6 +11,7 @@
                 <outlet property="doneAction" destination="RmS-1r-5gn" id="NRh-EU-JEO"/>
                 <outlet property="doneTaskLabel" destination="y9C-KC-C67" id="h4L-iO-dQf"/>
                 <outlet property="dreamLabel" destination="r5Z-dM-DuN" id="IEg-8B-zsJ"/>
+                <outlet property="progress" destination="ecL-Ad-9jj" id="4D8-jQ-WUm"/>
                 <outlet property="questionLabel" destination="oly-DD-Myn" id="Jt4-62-Iv5"/>
                 <outlet property="timeLabel" destination="IKw-0q-ND8" id="vl5-Fb-4SO"/>
                 <outlet property="totalTaskLabel" destination="8eN-DT-ka3" id="sSp-Bf-k7M"/>
@@ -95,7 +96,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9C-KC-C67">
-                        <rect key="frame" x="490" y="-1" width="18" height="17"/>
+                        <rect key="frame" x="487" y="-1" width="18" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="  " placeholderString="  " id="VF6-en-XkT">
                             <font key="font" metaFont="system"/>
@@ -121,6 +122,10 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-Ad-9jj">
+                        <rect key="frame" x="501" y="35" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
             <connections>

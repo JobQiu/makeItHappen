@@ -263,6 +263,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         mycommitment?.close()
         mycommitment = MyCommitment()
         mycommitment.showWindow(nil)
+        
     }
     
     

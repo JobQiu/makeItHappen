@@ -9,10 +9,15 @@
 import Foundation
 import Cocoa
 
+
+protocol CommitmentTimerProtocol {
+    func timeOnTimer(_ timer: Commitment, time: TimeInterval)
+}
+
 final class Commitment: NSObject, NSCoding{
     
     var content: String
-    var id:Int
+    var id:Int64
     var processing:Int
     var timeSpend:Int
     var totalTask:Int
@@ -20,8 +25,13 @@ final class Commitment: NSObject, NSCoding{
     var priority: Int
     var done:Int
     
+    var timer: Timer? = nil
+    var delegate: CommitmentTimerProtocol?
+    var elapsedTime: TimeInterval = 0
+    var startTime: Date?
+    
     init(content: String,
-         id:Int,
+         id:Int64,
          processing:Int,
          timeSpend:Int,
          totalTask:Int,
@@ -42,7 +52,7 @@ final class Commitment: NSObject, NSCoding{
         self.content = (aDecoder.decodeObject(forKey: "content") as? String) ?? ""
         self.type = (aDecoder.decodeObject(forKey: "type") as? String) ?? ""
         
-        self.id = Int(aDecoder.decodeInt32(forKey: "id"))
+        self.id = Int64(aDecoder.decodeInt64(forKey: "id"))
         
         self.processing = Int(aDecoder.decodeInt32(forKey: "processing"))
         
@@ -67,5 +77,37 @@ final class Commitment: NSObject, NSCoding{
         aCoder.encode(priority, forKey: "priority")
         aCoder.encode(done, forKey: "done")
         
+    }
+    
+    @objc dynamic func timerAction() {
+        guard let startTime = startTime else {
+            return
+        }
+        
+        elapsedTime = TimeInterval(timeSpend)-startTime.timeIntervalSinceNow
+        
+        let secondsRemaining = (elapsedTime).rounded()
+        
+        delegate?.timeOnTimer(self, time: secondsRemaining)
+        
+    }
+    
+    func startTimer() {
+        startTime = Date()
+        elapsedTime = TimeInterval(timeSpend)
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(timerAction),
+                                     userInfo: nil,
+                                     repeats: true)
+        timerAction()
+    }
+    
+    func stopTimer() {
+        // really just pauses the timer
+        timer?.invalidate()
+        timer = nil
+        
+        timerAction()
     }
 }
