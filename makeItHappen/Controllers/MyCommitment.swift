@@ -11,7 +11,6 @@ import Cocoa
 class MyCommitment: NSWindowController, CommitmentTimerProtocol {
     
     func timeOnTimer(_ timer: Commitment, time: TimeInterval) {
-        print(String(time))
         self.timeLabel.stringValue = (textToDisplay(for: time,commitment: timer))
         
     }
@@ -29,7 +28,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
             let secondsRemaining = timeRemaining - (minutesRemaining * 60)
             let minutesDisplay = String(format: "%02d",Int(minutesRemaining))
             let secondsDisplay = String(format: "%02d", Int(secondsRemaining))
-            if((Int(timeRemaining)) % 60==0){
+            if((Int(timeRemaining)) % 60==0 && (Int(timeRemaining))>60){
                 commitment.timeSpend = commitment.timeSpend+60
                 updateTimeSpend(type: commitment.type, id: commitment.id, timeSpend: Int(timeRemaining))
             }
