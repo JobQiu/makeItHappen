@@ -293,12 +293,13 @@ def readFilePringProblems(path):
                 todos = todos.union(sss2)
     return result, todos
 
-
+filter_apps = ["python","makeItHappen"]
 # %%
 for file_ in files:
     all_sent = True
     print file_
-    if file_ == "python":
+    if file_ in filter_apps:
+        continue
         continue
     problems, todos = readFilePringProblems(location + "/" + file_)
     for p in problems:
