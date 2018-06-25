@@ -10,10 +10,18 @@ import Cocoa
 
 class MyCommitment: NSWindowController, CommitmentTimerProtocol {
     
+    @IBAction func ShowTaskList(_ sender: Any) {
+    }
+    
+    
+    @IBOutlet weak var taskText: NSTextField!
+    
     func timeOnTimer(_ timer: Commitment, time: TimeInterval) {
         self.timeLabel.stringValue = (textToDisplay(for: time,commitment: timer))
         
     }
+    
+    
     private func updateTimeSpend(type:String,id:Int64,timeSpend:Int){
         var request = URLRequest(url: URL(string: self.user.homepage+"/api/updateTimeSpend?type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&timeSpend="+String(timeSpend))!)
         request.httpMethod = "GET"
@@ -56,7 +64,6 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
     @IBOutlet weak var totalTaskLabel: NSTextField!
     
     @IBOutlet weak var dreamLabel: NSTextField!
-    @IBOutlet weak var questionLabel: NSTextField!
     
     @IBOutlet weak var timeLabel: NSTextField!
     
@@ -88,7 +95,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
                         done = done + 1
                     }
                     DispatchQueue.main.async {
-                        self.questionLabel.stringValue = content
+                        self.taskText.stringValue = content
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
@@ -134,7 +141,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
                         done = done + 1
                     }
                     DispatchQueue.main.async {
-                        self.questionLabel.stringValue = content
+                        self.taskText.stringValue = content
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
@@ -181,7 +188,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
                         done = done + 1
                     }
                     DispatchQueue.main.async {
-                        self.questionLabel.stringValue = content
+                        self.taskText.stringValue = content
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
@@ -267,7 +274,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
                         done = done + 1
                     }
                     DispatchQueue.main.async {
-                        self.questionLabel.stringValue = content
+                        self.taskText.stringValue = content
                         self.totalTaskLabel.stringValue = "\(totalTask)"
                         
                         self.doneTaskLabel.stringValue = "\(done)"
@@ -287,4 +294,54 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
             }
         }).resume()
     }
+    
+    @IBAction func saveAction(_ sender: Any) {
+        self.progress.isHidden = false
+        self.progress.startAnimation(self)
+        self.commitment.stopTimer()
+        let url = self.user.homepage+"/api/addAsProcessingTask?content="+self.taskText.stringValue+"&userId="+String(self.user.userId)+"&token="+self.user.token
+        let u = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        var request = URLRequest(url: u!)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                if data == nil{
+                    return
+                }
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+                if json.keys.contains("content"){
+                    let content = json["content"] as! String
+                    let type = json["type"] as! String
+                    let timeSpend = json["timeSpend"] as! Int
+                    let id = json["id"] as! Int64
+                    let priority = json["priority"] as! Int
+                    var done = json["done"] as! Int
+                    
+                    let totalTask = json["totalTask"] as! Int
+                    if done != totalTask{
+                        done = done + 1
+                    }
+                    DispatchQueue.main.async {
+                        self.taskText.stringValue = content
+                        self.totalTaskLabel.stringValue = "\(totalTask)"
+                        
+                        self.doneTaskLabel.stringValue = "\(done)"
+                        self.commitment.priority = priority
+                        self.commitment.timeSpend = timeSpend
+                        self.commitment.type = type
+                        self.commitment.id = id
+                        self.progress.stopAnimation(self)
+                        self.progress.isHidden = true
+                        self.commitment.startTimer()
+                    }
+                }
+            } catch {
+                print("JSON Serialization error")
+            }
+        }).resume()
+        
+    }
+    
 }
