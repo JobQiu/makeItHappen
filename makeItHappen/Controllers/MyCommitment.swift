@@ -21,8 +21,26 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         
     }
     
+    @objc func onWakeNote(note: NSNotification) {
+        self.commitment.startTimer()
+    }
+    
+    @objc func onSleepNote(note: NSNotification) {
+        self.commitment.stopTimer()
+    }
+    
+    func fileNotifications() {
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self, selector: #selector(onWakeNote(note:)),
+            name: NSWorkspace.didWakeNotification, object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self, selector: #selector(onSleepNote(note:)),
+            name: NSWorkspace.willSleepNotification, object: nil)
+    }
     
     private func updateTimeSpend(type:String,id:Int64,timeSpend:Int){
+        
         var request = URLRequest(url: URL(string: self.user.homepage+"/api/updateTimeSpend?type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&timeSpend="+String(timeSpend))!)
         request.httpMethod = "GET"
         
@@ -226,6 +244,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         loadCommitment()
         self.commitment.delegate = self
         self.dreamLabel.stringValue = self.user.dream
+        fileNotifications()
     }
     
     var commitment:Commitment = Commitment(content: "",

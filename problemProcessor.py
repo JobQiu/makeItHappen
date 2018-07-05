@@ -240,7 +240,7 @@ def containQuestion(line):
 
 
 def containTodo(line):
-    return ".todo" in line
+    return ".todo" in line | ">TODO" in line
 
 
 def removeOthers(line):
@@ -283,6 +283,7 @@ def readFilePringProblems(path):
                 result = result.union(sss)
 
             if containTodo(line):
+                line = line.replace(">TODO",".todo")
                 print (str)(index_) + "\t" + (cleanLine(line))
                 after = removeOthers(dealWithBackSpace(dealWithShift(cleanLine(line))))
                 # print (str)(index_) + "\t" + after
