@@ -240,7 +240,9 @@ def containQuestion(line):
 
 
 def containTodo(line):
-    return ".todo" in line | ">TODO" in line
+    if ">TODO" in line :
+        return true
+    return ".todo" in line
 
 
 def removeOthers(line):
