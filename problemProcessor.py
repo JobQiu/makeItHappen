@@ -241,7 +241,7 @@ def containQuestion(line):
 
 def containTodo(line):
     if ">TODO" in line :
-        return true
+        return True
     return ".todo" in line
 
 
