@@ -18,6 +18,7 @@ print 'Argument List: ', str(sys.argv)
 
 # %%
 URL = "http://localhost:8081"
+delete_after_process = False
 yesterday = now - timedelta(1)
 test = True
 if test:
@@ -313,7 +314,7 @@ for file_ in files:
         result = sendTodo(t)
         if result.code != 200:
             all_sent = False
-    if all_sent:
+    if all_sent and delete_after_process:
         os.remove(location + "/" + file_)
 print "done"
 
