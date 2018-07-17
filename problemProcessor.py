@@ -320,10 +320,10 @@ for file_ in files:
         if result.code != 200:
             all_sent = False
     # if the file has not been modified during recent 5 minutes, delete it.
-    time_difference = time.mktime(now.timetuple()) - os.path.getmtime(file_)
+    time_difference = time.mktime(now.timetuple()) - os.path.getmtime(location + "/" + file_)
     if all_sent and time_difference > 300:
         os.remove(location + "/" + file_)
-        
+
 print "done"
 
 # %%
