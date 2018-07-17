@@ -7,6 +7,7 @@ import sys
 import urllib
 import urllib2
 from datetime import timedelta
+import time
 
 from string import ascii_lowercase
 
@@ -150,8 +151,7 @@ def cleanLine(line):
     return line.replace("\n", "").replace("\F2", "").replace("\F3", "").replace("\F4", "") \
         .replace("\F5", "").replace("\F6", "").replace("\F7", "").replace("\F8", "") \
         .replace("\F9", "").replace("\F10", "").replace(
-        "\F11", "").replace("\F12", "").replace("\F1", "").replace("\ESCAPE", "")
-    strip()
+        "\F11", "").replace("\F12", "").replace("\F1", "").replace("\ESCAPE", "").strip()
 
 
 def dealWithBackSpace(line):
@@ -298,6 +298,7 @@ def readFilePringProblems(path):
     return result, todos
 
 filter_apps = ["python","makeItHappen"]
+filter_content = ["","?"]
 # %%
 for file_ in files:
     all_sent = True
@@ -307,15 +308,22 @@ for file_ in files:
         continue
     problems, todos = readFilePringProblems(location + "/" + file_)
     for p in problems:
+        if p in filter_content:
+            continue
         result = sendProblem(p)
         if result.code != 200:
             all_sent = False
     for t in todos:
+        if t in filter_content:
+            continue
         result = sendTodo(t)
         if result.code != 200:
             all_sent = False
-    if all_sent and delete_after_process:
+    # if the file has not been modified during recent 5 minutes, delete it.
+    time_difference = time.mktime(now.timetuple()) - os.path.getmtime(file_)
+    if all_sent and time_difference > 300:
         os.remove(location + "/" + file_)
+        
 print "done"
 
 # %%

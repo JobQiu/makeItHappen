@@ -260,6 +260,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     @IBAction func openHomepage(_ sender: NSMenuItem) {
+        mycommitment?.commitment.stopTimer()
         mycommitment?.close()
         mycommitment = MyCommitment()
         mycommitment.showWindow(nil)
