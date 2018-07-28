@@ -46,6 +46,8 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
         }).resume()
+        
+        
     }
     
     private func textToDisplay(for timeRemaining: TimeInterval, commitment:Commitment) -> String {
@@ -227,7 +229,6 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
     
     override func close() {
         self.commitment.stopTimer()
-        print("ohch. save me. no .... ")
         super.close()
     }
     

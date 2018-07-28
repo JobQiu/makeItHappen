@@ -19,6 +19,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     
     var aboutWindow: AboutWindow!
     var mycommitment: MyCommitment!
+    var mycommitment_cache: MyCommitment!
     var prefsWindow: PrefsWindow!
     
     var numStaticMenuItems = 0;
@@ -262,8 +263,11 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     @IBAction func openHomepage(_ sender: NSMenuItem) {
         mycommitment?.commitment.stopTimer()
         mycommitment?.close()
+        mycommitment_cache = mycommitment
         mycommitment = MyCommitment()
         mycommitment.showWindow(nil)
+        mycommitment_cache.close()
+        mycommitment_cache = nil
         
     }
     
