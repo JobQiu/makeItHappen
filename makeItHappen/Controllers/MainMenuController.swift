@@ -303,12 +303,12 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     private func downloadLogger(){
-        shell(launchPath: "/usr/local/bin/wget" ,"wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/Keylogger","-P",self.prefsWindow.preferences.keyloggerLocation)
+        shell(launchPath: "/usr/bin/curl" ,"https://raw.githubusercontent.com/JobQiu/makeItHappen/master/Keylogger","-o",self.prefsWindow.preferences.keyloggerLocation+"Keylogger")
         shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/Keylogger")
     }
     
     private func downloadPyScript(){
-        shell(launchPath: "/usr/local/bin/wget" ,"wget","https://raw.githubusercontent.com/JobQiu/makeItHappen/master/problemProcessor.py","-P",self.prefsWindow.preferences.keyloggerLocation)
+        shell(launchPath: "/usr/bin/curl" ,"https://raw.githubusercontent.com/JobQiu/makeItHappen/master/problemProcessor.py","-o",self.prefsWindow.preferences.keyloggerLocation+"problemProcessor.py")
         shell(launchPath: "/usr/bin/env", "chmod","777",self.prefsWindow.preferences.keyloggerLocation+"/problemProcessor.py")
     }
     
