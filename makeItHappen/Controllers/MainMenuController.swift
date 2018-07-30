@@ -55,7 +55,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         if !checkFileExist(path: dir+"problemProcessor.py"){
             downloadPyScript()
         }
-        shell(launchPath:"/usr/bin/python2.7","/Users/xavier.qiu/Documents/keylogger/problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token)
+        shell(launchPath:"/usr/bin/python",self.prefsWindow.preferences.keyloggerLocation+"problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token)
     }
     
     private func startLogger(){
