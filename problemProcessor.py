@@ -21,7 +21,7 @@ print 'Argument List: ', str(sys.argv)
 URL = "http://forging.tech"
 delete_after_process = False
 yesterday = now - timedelta(1)
-test = false
+test = False
 if test:
     userId = 1
     token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
