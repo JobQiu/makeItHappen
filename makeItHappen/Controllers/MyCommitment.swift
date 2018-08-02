@@ -364,4 +364,5 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         
     }
     
+    
 }

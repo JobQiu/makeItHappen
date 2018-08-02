@@ -24,7 +24,7 @@ yesterday = now - timedelta(1)
 test = False
 if test:
     userId = 1
-    token = "05c99a65-6c8e-4944-8cc2-7df534687bfb"
+    token = ""
     location = "/Users/xavier.qiu/Documents/keylogger/Data/Key/"
 else:
     location = sys.argv[1]
@@ -57,6 +57,10 @@ def sendTodo(todo):
     contents = urllib2.urlopen(URL + '/api/addT?' + params)
     return contents
 
+def sendItem(item,type):
+    params = urllib.urlencode({'content': item, 'type':type,'userId': (str)(userId), 'token': token})
+    contents = urllib2.urlopen(URL + '/api/addI?' + params)
+    return contents
 
 files = os.listdir(location)
 
@@ -182,7 +186,30 @@ def getProblemsFromLine(line):
             if count > 15:
                 break
     return result
+#%%
+ITEMS = ['.voca','>VOCA','.idea','>IDEA','.prog','>PROG','.note',">NOTE",'.fit','>FIT']
 
+def getItemsFromLine(line):
+    result = {}
+    lines = line.split('>|<')
+    for i in range(len(lines)-1):
+        sentences = re.split("\.|!?",lines[i])
+        print len(sentences)
+        if len(sentences) == 2:
+            # for example, just this test.idea
+            result.__setitem__(sentences[0],sentences[1])
+            continue
+        type_ = sentences.pop()
+        print type_
+        # pop to get the first one
+        if type_.strip() == "" and len(sentences >= 1):
+            type_ = sentences.pop()
+
+        if "."+type_ in ITEMS:
+            result.__setitem__(sentences.pop() ,type_)
+    return result
+
+#%%
 
 def getTodosFromLine(line):
     result = set()
@@ -245,7 +272,12 @@ def containTodo(line):
         return True
     return ".todo" in line
 
-
+def containItem(line):
+    for item_name in ITEMS:
+        if item_name in line:
+            return True
+    return False
+    #%%
 def removeOthers(line):
     line = line.replace("\RCMD(", "\LCMD(")
     return line.replace("\ESCAPE", "") \
@@ -267,6 +299,7 @@ def removeOthers(line):
 def readFilePringProblems(path):
     result = set()
     todos = set()
+    items_1 = {}
     with open(path) as fp:
 
         index_ = 1
@@ -295,7 +328,17 @@ def readFilePringProblems(path):
                     print "\t" + ss2
                 index_ += 1
                 todos = todos.union(sss2)
-    return result, todos
+
+            if containItem(line):
+                line = line.replace('>VOCA','.voca').replace('>IDEA','.idea').replace('>PROG','.prog').replace('>NOTE','.note').replace('>FIT','.fit')
+
+                after = removeOthers(dealWithBackSpace(dealWithShift(cleanLine(line))))
+                after = after.replace('.voca','.voca>|<').replace('.idea','.idea>|<').replace('.prog','.prog>|<').replace('.note','.note>|<').replace('.fit','>|<')
+                items_ = getItemsFromLine(after)
+
+
+                pass
+    return result, todos, items_
 
 filter_apps = ["python","makeItHappen"]
 filter_content = ["","?"]
@@ -306,7 +349,7 @@ for file_ in files:
     if file_ in filter_apps:
         continue
         continue
-    problems, todos = readFilePringProblems(location + "/" + file_)
+    problems, todos, items_2 = readFilePringProblems(location + "/" + file_)
     for p in problems:
         if p in filter_content:
             continue
@@ -319,6 +362,12 @@ for file_ in files:
         result = sendTodo(t)
         if result.code != 200:
             all_sent = False
+    for key, value in items_2.items():
+        if key in filter_content:
+            continue
+        result = sendItem(key,value)
+        if result.code !=200:
+            all_sent=False
     # if the file has not been modified during recent 5 minutes, delete it.
     time_difference = time.mktime(now.timetuple()) - os.path.getmtime(location + "/" + file_)
     if all_sent and time_difference > 300:

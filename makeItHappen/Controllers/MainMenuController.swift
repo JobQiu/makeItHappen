@@ -253,12 +253,21 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         aboutWindow.showWindow(nil)
     }
     
+    @IBAction func homepageChosen(_ sender: Any) {
+        if let url = URL(string: "http://forging.tech/qa/homepage"),
+            NSWorkspace.shared.open(url) {
+            
+            
+        }
+    }
     @IBAction func prefsChosen(_ sender: NSMenuItem) {
         prefsWindow?.close()
         prefsWindow = PrefsWindow()
         prefsWindow.delegate = self
         prefsWindow.showWindow(nil)
     }
+    
+    
     
     @IBAction func openHomepage(_ sender: NSMenuItem) {
         mycommitment?.commitment.stopTimer()
