@@ -334,11 +334,11 @@ def readFilePringProblems(path):
 
                 after = removeOthers(dealWithBackSpace(dealWithShift(cleanLine(line))))
                 after = after.replace('.voca','.voca>|<').replace('.idea','.idea>|<').replace('.prog','.prog>|<').replace('.note','.note>|<').replace('.fit','>|<')
-                items_ = getItemsFromLine(after)
+                items_1 = getItemsFromLine(after)
 
 
                 pass
-    return result, todos, items_
+    return result, todos, items_1
 
 filter_apps = ["python","makeItHappen"]
 filter_content = ["","?"]
