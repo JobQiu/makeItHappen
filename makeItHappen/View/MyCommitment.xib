@@ -41,7 +41,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RmS-1r-5gn">
+                    <button toolTip="Done" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RmS-1r-5gn">
                         <rect key="frame" x="482" y="22" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icons8-ok-48" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZLD-1i-VDI">
@@ -53,7 +53,7 @@
                             <action selector="doneAction:" target="-2" id="OE0-rg-uaY"/>
                         </connections>
                     </button>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zm9-bE-0wm">
+                    <button toolTip="Pass" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zm9-bE-0wm">
                         <rect key="frame" x="500" y="22" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icons8-next-page-48" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0sx-Sg-yhO">
@@ -74,7 +74,7 @@
                             <string key="keyEquivalent">m</string>
                         </buttonCell>
                     </button>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q77-Se-9Sa">
+                    <button toolTip="I don't want to solve it now." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q77-Se-9Sa">
                         <rect key="frame" x="465" y="22" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icons8-unpin-2-48" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="MKV-Qy-xug">
@@ -87,7 +87,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-dM-DuN">
-                        <rect key="frame" x="64" y="24" width="403" height="17"/>
+                        <rect key="frame" x="64" y="24" width="382" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="I want to be a data engineer in 1 years." drawsBackground="YES" id="ZnD-jP-uUR">
                             <font key="font" metaFont="system"/>
@@ -95,7 +95,7 @@
                             <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9C-KC-C67">
+                    <textField toolTip="Finished task today" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9C-KC-C67">
                         <rect key="frame" x="485" y="4" width="18" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="  " placeholderString="  " id="VF6-en-XkT">
@@ -113,7 +113,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8eN-DT-ka3">
+                    <textField toolTip="Total task today" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8eN-DT-ka3">
                         <rect key="frame" x="503" y="4" width="19" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="k0f-RD-HEO">
@@ -122,11 +122,11 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-Ad-9jj">
+                    <progressIndicator toolTip="loading" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ecL-Ad-9jj">
                         <rect key="frame" x="451" y="22" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-NS-wjN">
+                    <textField toolTip="Input your next question/todo here" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdv-NS-wjN">
                         <rect key="frame" x="65" y="1" width="381" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="IXo-nq-qAV">
@@ -135,7 +135,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFk-o4-Pb0">
+                    <button toolTip="Save as next task." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFk-o4-Pb0">
                         <rect key="frame" x="449" y="3" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="icons8-save-48" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="SAj-9T-BFh">
