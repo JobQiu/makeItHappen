@@ -340,7 +340,7 @@ def readFilePringProblems(path):
                 pass
     return result, todos, items_1
 
-filter_apps = ["python","makeItHappen"]
+filter_apps = ["makeItHappen"]
 filter_content = ["","?"]
 # %%
 for file_ in files:
