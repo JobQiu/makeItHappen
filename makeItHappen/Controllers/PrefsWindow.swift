@@ -29,13 +29,17 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     var kShortCut: MASShortcut!
     var count:Int = 0
     var user:User = User(account: "",password_md5: "",token: "",userId:0,dream:"")
-    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false)
+    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false,encryptKey:"")
     
     @IBOutlet weak var contentLabel: NSTextField!
     @IBOutlet weak var showCount: NSTextField!
     @IBOutlet weak var shortcutView: MASShortcutView!
     @IBOutlet weak var loginButton: NSButton!
     
+    @IBOutlet weak var encryptKey: NSTextField!
+    
+    @IBAction func saveEncryptKey(_ sender: Any) {
+    }
     override var windowNibName : NSNib.Name! {
         return NSNib.Name(rawValue: "PrefsWindow")
     }
@@ -46,6 +50,12 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
         loadPreferences()
         
         self.logLocation.stringValue = self.preferences.keyloggerLocation
+        
+        self.encryptKey.stringValue = self.preferences.encryptKey
+        
+        if !self.encryptKey.stringValue.isEmpty{
+            self.encryptKey.isEnabled=false
+        }
         print(self.preferences.startAtLogin)
         if self.preferences.startAtLogin{
             self.startAtLogin.state = NSControl.StateValue.on
@@ -144,6 +154,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     
     @IBAction func login(_ sender: Any) {
         let account = self.account.stringValue
+        
         let password_md5 = md5ify(original: self.password.stringValue)
         var request = URLRequest(url: URL(string: self.user.homepage+"/api/getToken?account="+account+"&password="+password_md5)!)
         request.httpMethod = "GET"
@@ -214,6 +225,7 @@ class PrefsWindow: NSWindowController, NSWindowDelegate {
     @IBAction func savePreferences(_ sender: Any) {
         self.preferences.keyloggerLocation = self.logLocation.stringValue
         self.preferences.startAtLogin = Bool(startAtLogin.state == NSControl.StateValue.on)
+        self.preferences.encryptKey = self.encryptKey.stringValue
         print(self.preferences.startAtLogin)
         savePref(pref: self.preferences)
         

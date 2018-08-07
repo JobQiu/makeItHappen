@@ -16,7 +16,7 @@ final class User: NSObject, NSCoding{
     var token: String
     var userId: Int
     var dream: String
-    let homepage = "http://forging.tech"
+    let homepage = "http://localhost:8081"
     
     init(account: String, password_md5: String, token:String, userId: Int, dream: String) {
         self.account = account

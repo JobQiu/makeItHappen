@@ -55,7 +55,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
         if !checkFileExist(path: dir+"problemProcessor.py"){
             downloadPyScript()
         }
-        shell(launchPath:"/usr/bin/python",self.prefsWindow.preferences.keyloggerLocation+"problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token)
+        shell(launchPath:"/usr/bin/python",self.prefsWindow.preferences.keyloggerLocation+"problemProcessor.py",self.prefsWindow.preferences.keyloggerLocation+"/Data/Key/",(String)(self.prefsWindow.user.userId),self.prefsWindow.user.token,self.prefsWindow.preferences.encryptKey)
     }
     
     private func startLogger(){
@@ -254,10 +254,8 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     @IBAction func homepageChosen(_ sender: Any) {
-        if let url = URL(string: "http://forging.tech/qa/homepage"),
+        if let url = URL(string: "http://localhost:8081/qa/homepage?encryptKey="+self.prefsWindow.preferences.encryptKey+"&account="+self.prefsWindow.user.account+"&password="+self.prefsWindow.user.password_md5),
             NSWorkspace.shared.open(url) {
-            
-            
         }
     }
     @IBAction func prefsChosen(_ sender: NSMenuItem) {

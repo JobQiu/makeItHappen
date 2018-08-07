@@ -18,6 +18,7 @@ print 'Number of arguments:', len(sys.argv), 'arguments.'
 print 'Argument List: ', str(sys.argv)
 
 # %%
+#URL = "http://localhost:8081"
 URL = "http://forging.tech"
 delete_after_process = False
 yesterday = now - timedelta(1)
@@ -30,6 +31,7 @@ else:
     location = sys.argv[1]
     userId = (int)(sys.argv[2])
     token = sys.argv[3]
+    encryptKey = sys.argv[4]
 
 
 def removeYesterdayFolder():
@@ -47,18 +49,18 @@ location = location + (str)(now.day) + "-" + (str)(now.month) + "-" + (str)(now.
 
 
 def sendProblem(problem):
-    params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token})
+    params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
     contents = urllib2.urlopen(URL + '/api/addQ?' + params)
     return contents
 
 
 def sendTodo(todo):
-    params = urllib.urlencode({'todo': todo, 'userId': (str)(userId), 'token': token})
+    params = urllib.urlencode({'todo': todo, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
     contents = urllib2.urlopen(URL + '/api/addT?' + params)
     return contents
 
 def sendItem(item,type):
-    params = urllib.urlencode({'content': item, 'type':type,'userId': (str)(userId), 'token': token})
+    params = urllib.urlencode({'content': item, 'type':type,'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
     contents = urllib2.urlopen(URL + '/api/addI?' + params)
     return contents
 

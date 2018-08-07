@@ -21,6 +21,19 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         
     }
     
+    var preferences = Preferences(keyloggerLocation: "/Users/"+NSUserName()+"/Documents/keylogger/", startAtLogin: false,encryptKey:"")
+    
+    let prefKey = "Pref"
+    
+    private func loadPreferences(){
+        guard
+            let data = UserDefaults.standard.object(forKey: prefKey) as? Data,
+            let prefTemp = NSKeyedUnarchiver.unarchiveObject(with: data) as? Preferences else{
+                return
+        }
+        self.preferences = prefTemp
+    }
+    
     @objc func onWakeNote(note: NSNotification) {
         self.commitment.startTimer()
     }
@@ -92,7 +105,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         self.progress.isHidden = false
         self.progress.startAnimation(self)
         self.commitment.stopTimer()
-        var request = URLRequest(url: URL(string: self.user.homepage+"/api/changeATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&priority="+String(self.commitment.priority)+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/changeATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&priority="+String(self.commitment.priority)+"&encryptKey="+self.preferences.encryptKey+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -138,7 +151,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         self.progress.isHidden = false
         self.progress.startAnimation(self)
         self.commitment.stopTimer()
-        var request = URLRequest(url: URL(string: self.user.homepage+"/api/unpinATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&priority="+String(self.commitment.priority)+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/unpinATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&priority="+String(self.commitment.priority)+"&encryptKey="+self.preferences.encryptKey+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -185,7 +198,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         self.progress.isHidden = false
         self.progress.startAnimation(self)
         self.commitment.stopTimer()
-        var request = URLRequest(url: URL(string: self.user.homepage+"/api/doneATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/doneATask?userId="+String(self.user.userId)+"&type="+self.commitment.type+"&id="+(String)(self.commitment.id)+"&encryptKey="+self.preferences.encryptKey+"&timeSpend="+String(Int(self.commitment.elapsedTime)))!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -242,6 +255,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         window!.styleMask.remove(.resizable)
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         loadUser()
+        loadPreferences()
         loadCommitment()
         self.commitment.delegate = self
         self.dreamLabel.stringValue = self.user.dream
@@ -271,7 +285,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
     private func loadCommitment(){
         self.progress.isHidden = false
         self.progress.startAnimation(self)
-        var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId))!)
+        var request = URLRequest(url: URL(string: self.user.homepage+"/api/getATask?userId="+String(self.user.userId)+"&encryptKey="+self.preferences.encryptKey)!)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request, completionHandler: { data, response, error -> Void in
@@ -319,7 +333,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
         self.progress.isHidden = false
         self.progress.startAnimation(self)
         self.commitment.stopTimer()
-        let url = self.user.homepage+"/api/addAsProcessingTask?content="+self.taskText.stringValue+"&userId="+String(self.user.userId)+"&token="+self.user.token
+        let url = self.user.homepage+"/api/addAsProcessingTask?content="+self.taskText.stringValue+"&userId="+String(self.user.userId)+"&token="+self.user.token+"&encryptKey="+self.preferences.encryptKey
         let u = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         var request = URLRequest(url: u!)
         request.httpMethod = "GET"
