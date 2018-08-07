@@ -254,7 +254,7 @@ class MainMenuController: NSObject , NetServiceBrowserDelegate, NetServiceDelega
     }
     
     @IBAction func homepageChosen(_ sender: Any) {
-        if let url = URL(string: "http://localhost:8081/qa/homepage?encryptKey="+self.prefsWindow.preferences.encryptKey+"&account="+self.prefsWindow.user.account+"&password="+self.prefsWindow.user.password_md5),
+        if let url = URL(string: "http://forging.tech/qa/homepage?encryptKey="+self.prefsWindow.preferences.encryptKey+"&account="+self.prefsWindow.user.account+"&password="+self.prefsWindow.user.password_md5),
             NSWorkspace.shared.open(url) {
         }
     }
