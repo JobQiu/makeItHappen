@@ -50,7 +50,7 @@ location = location + (str)(now.day) + "-" + (str)(now.month) + "-" + (str)(now.
 
 def sendProblem(problem):
     with open("/Users/xavier.qiu/Documents/DailyQuestion/README.md", "a") as myfile:
-        myfile.write("appended text")
+        myfile.write(problem+"\n")
 
     #params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
     #contents = urllib2.urlopen(URL + '/api/addQ?' + params)
