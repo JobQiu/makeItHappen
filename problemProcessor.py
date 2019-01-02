@@ -362,20 +362,27 @@ for file_ in files:
         if p in filter_content:
             continue
         result = sendProblem(p)
-        if result.code != 200:
+        if result == 200:
+            all_sent = True
+        elif result.code != 200:
             all_sent = False
     for t in todos:
         if t in filter_content:
             continue
         result = sendTodo(t)
-        if result.code != 200:
+        if result == 200:
+            all_sent = True
+        elif result.code != 200:
             all_sent = False
     for key, value in items_2.items():
         if key in filter_content:
             continue
         result = sendItem(key,value)
-        if result.code !=200:
-            all_sent=False
+
+        if result == 200:
+            all_sent = True
+        elif result.code != 200:
+            all_sent = False
     # if the file has not been modified during recent 5 minutes, delete it.
     time_difference = time.mktime(now.timetuple()) - os.path.getmtime(location + "/" + file_)
     if all_sent and time_difference > 300:
