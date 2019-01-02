@@ -21,14 +21,12 @@
         </customObject>
         <menu id="ofd-Xw-a8y">
             <items>
-                <menuItem title="Visit My Homepage" id="udM-HV-iPw">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Visit My Homepage" alternate="YES" keyEquivalent="[" allowsKeyEquivalentWhenHidden="YES" id="udM-HV-iPw">
                     <connections>
                         <action selector="homepageChosen:" target="OO7-7k-kb7" id="kjA-tm-W8x"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Current Task" id="dul-sO-Bpn">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Current Task" alternate="YES" keyEquivalent="]" id="dul-sO-Bpn">
                     <connections>
                         <action selector="openHomepage:" target="OO7-7k-kb7" id="kex-Uw-8gE"/>
                     </connections>

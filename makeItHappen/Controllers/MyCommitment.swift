@@ -192,6 +192,7 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
             }
         }).resume()
     
+        
     }
     
     @IBAction func doneAction(_ sender: Any) {
@@ -238,6 +239,12 @@ class MyCommitment: NSWindowController, CommitmentTimerProtocol {
                 print("JSON Serialization error")
             }
         }).resume()
+        
+        
+        usleep(200000)
+        if let url = URL(string: "http://forging.tech/summary?encryptKey="+self.preferences.encryptKey+"&account="+self.user.account+"&password="+self.user.password_md5),
+            NSWorkspace.shared.open(url) {
+        }
     }
     
     override func close() {

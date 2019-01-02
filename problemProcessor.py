@@ -49,20 +49,26 @@ location = location + (str)(now.day) + "-" + (str)(now.month) + "-" + (str)(now.
 
 
 def sendProblem(problem):
-    params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
-    contents = urllib2.urlopen(URL + '/api/addQ?' + params)
-    return contents
+    with open("/Users/xavier.qiu/Documents/DailyQuestion/README.md", "a") as myfile:
+        myfile.write("appended text")
+
+    #params = urllib.urlencode({'q': problem, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
+    #contents = urllib2.urlopen(URL + '/api/addQ?' + params)
+    #return contents
+    return  200
 
 
 def sendTodo(todo):
-    params = urllib.urlencode({'todo': todo, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
-    contents = urllib2.urlopen(URL + '/api/addT?' + params)
-    return contents
+    #params = urllib.urlencode({'todo': todo, 'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
+    #contents = urllib2.urlopen(URL + '/api/addT?' + params)
+    #return contents
+    return 200
 
 def sendItem(item,type):
-    params = urllib.urlencode({'content': item, 'type':type,'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
-    contents = urllib2.urlopen(URL + '/api/addI?' + params)
-    return contents
+    #params = urllib.urlencode({'content': item, 'type':type,'userId': (str)(userId), 'token': token,'encryptKey':encryptKey})
+    #contents = urllib2.urlopen(URL + '/api/addI?' + params)
+    #return contents
+    return 200
 
 files = os.listdir(location)
 
